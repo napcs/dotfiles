@@ -1,0 +1,61 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Resize Bindings
+bind right:ctrl;shift           resize +10% +0
+bind left:ctrl;shift            resize -10% +0
+bind up:ctrl;shift              resize +0   -10%
+bind down:ctrl;shift            resize +0   +10%
+bind m:ctrl;alt;cmd      move 0;0 screenSizeX;screenSizeY
+
+# Push Bindings
+bind up:ctrl;alt;cmd     push up    bar-resize:screenSizeY/2
+bind down:ctrl;alt;cmd   push down  bar-resize:screenSizeY/2
+bind right:ctrl;alt;cmd  push right bar-resize:screenSizeX/2
+bind left:ctrl;alt;cmd   push left  bar-resize:screenSizeX/2
+
+bind left:ctrl;shift;alt  corner top-left resize:screenSizeX/2;screenSizeY/2
+bind up:ctrl;shift;alt  corner top-right resize:screenSizeX/2;screenSizeY/2
+bind down:ctrl;shift;alt  corner bottom-left resize:screenSizeX/2;screenSizeY/2
+
+bind right:ctrl;shift;alt  corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+# Nudge Bindings
+bind right:shift;alt nudge +10% +0
+bind left:shift;alt  nudge -10% +0
+bind up:shift;alt    nudge +0   -10%
+bind down:shift;alt  nudge +0   +10%
+
+# Throw Bindings
+bind right:ctrl;alt throw right 
+bind left:ctrl;alt  throw left  
+
+# Focus Bindings
+bind left:ctrl      focus left
+bind right:ctrl     focus right
+bind up:ctrl        focus up
+bind down:ctrl      focus down
+bind up:cmd;alt     focus behind
+bind down:cmd;alt   focus behind
+
+# Window Hints
+bind esc:cmd hint
+
+# Shows app icons and background apps, spreads icons in the same place.
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread false
+
+#window hints
+bind e:cmd hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
+
+# Grid
+bind g:cmd grid padding:5 0:6,4 1:8,3
+
+
+# Bindings
+bind 1:ctrl show 'iTerm','Google Chrome'

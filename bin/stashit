@@ -1,0 +1,62 @@
+#!/bin/bash
+ 
+# StashIt wraps the 'wget' command and puts files
+# in my ~/Dropbox/stashit folder. It's just something
+# simple but it makes my life easier because I can name
+# the file myself.
+#
+# Example:
+#
+# stashit cat_hates_you http://i.imgur.com/ZCd5N.png
+#
+# I can put it in a subfolder too
+#
+# stashit cat_hates_you http://i.imgur.com/ZCd5N.png pics/funny/cat_pictures
+#
+# Installation:
+#
+# Save this file as 'stashit' and then make it executable.
+#
+# $ chmod +x stashit
+ 
+# License: MIT
+ 
+# Copyright (c) 2012 Brian P. Hogan
+ 
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ 
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+echo "StashIt v1.0 (c) 2012 Brian P. Hogan"
+echo "------------------------------------"
+ 
+wget >/dev/null 2>/dev/null
+RETVAL=$?
+ROOT=$HOME/Dropbox/stashit
+ 
+if [[ $RETVAL -eq 127 ]]; then
+  echo 'wget command not found. Install it please. '
+  exit 127
+fi
+ 
+filename=$1
+url=$2
+folder=$3
+ 
+if [ -z "$folder"]; then
+  path=$ROOT
+else
+  path=$ROOT/$folder
+fi
+ 
+mkdir -p $path     # creates the folder if it doesn't exist
+ 
+xpath=${url%/*}    # gets the base path
+xbase=${url##*/}   # gets the file
+xfext=${xbase##*.} # gets the extension
+xpref=${xbase%.*}  # gets the gets the filename prefix
+ 
+wget -O $path/$filename.$xfext $url
+echo "Done"
