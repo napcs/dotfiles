@@ -11,7 +11,8 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-haml'
+Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'tpope/vim-endwise'
 Bundle 'kien/ctrlp.vim'
@@ -31,5 +32,7 @@ Bundle 'tpope/vim-rake'
 Bundle 'airblade/vim-rooter'
 Bundle 'napcs/vim-mycontrast'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'tpope/vim-dispatch'
+Bundle 'terryma/vim-multiple-cursors'
 
 

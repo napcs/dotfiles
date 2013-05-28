@@ -112,6 +112,7 @@ imap jj <Esc>:w<CR>
 " Supports pasting in from the clipboard
 set pastetoggle=<F2>
 
+
 " Navigate tabs
 map <F3> :tabp<CR>                       
 map <F4> :tabn<CR>
@@ -166,8 +167,12 @@ vmap <Leader>vs "vy :call VimuxRunCommand(@v . "\n", 0)<CR>
 nmap <Leader>vs vip<LocalLeader>vs<CR>
 
 
+" ----------- Dispatch configs ---------------------------------------
 
-
+autocmd FileType java let b:dispatch = 'javac %'
+autocmd FileType coffee let b:dispatch = 'coffee -c %'
+autocmd FileType html let b:dispatch = 'open %'
+nnoremap <F9> :Dispatch<CR>
 
 " ----------- Private Configuration ----------------------------------
 
