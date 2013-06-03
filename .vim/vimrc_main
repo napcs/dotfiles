@@ -94,8 +94,6 @@ let mapleader = ","                      "remap leader to ',' which is much easi
 "Switch to previous file with ',,'
 nmap <leader><leader> <C-^>             
 
-" Open NERDTree with [,d] 
-map <Leader>d :NERDTreeToggle<CR> :set number<CR>
 
 " Open Taglist with [,s]
 map <Leader>s :TlistToggle<CR>
@@ -131,7 +129,17 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " ----------- Plugin Configuration ----------------------------------
 
-" ---- CTRL-P bindings
+" ---- NERDTree  configuration
+
+" Open NERDTree with [,d] 
+map <Leader>d :NERDTreeToggle<CR>
+
+let NERDTreeShowLineNumbers=1
+let NERDTreeMinimalUI=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" ---- CTRL-P configuration
 
 " Open fuzzy finder with leader,f
 

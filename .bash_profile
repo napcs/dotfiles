@@ -18,7 +18,7 @@ alias ta='unset TMPDIR && tmux attach -t'
 alias migrate='rake db:migrate; db:test:prepare'
 alias psr='ps -ef | grep'
 alias ep='vim ~/.bash_profile'
-alias ev='vim ~/Dropbox/dotfiles/.vim/.vimrc_main'
+alias ev='vim ~/Dropbox/dotfiles/.vim/vimrc_main'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
 

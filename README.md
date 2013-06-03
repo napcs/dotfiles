@@ -44,7 +44,6 @@ I also create a bin/ folder and symlink the files in bin/ in there.
 ~~~
 mkdir -p ~/bin
 ln -nfs ~/Dropbox/dotfiles/bin/battery ~/bin/battery
-ln -nfs ~/Dropbox/dotfiles/bin/mp3 ~/bin/mp3
 ~~~
 
 Once that's all set I use Vundle to install the vim plugins. I made an alias to keep this updated.
