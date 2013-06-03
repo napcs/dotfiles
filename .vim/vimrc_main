@@ -14,38 +14,43 @@ set nocompatible                         "don't need to keep compatibility with 
 filetype plugin indent on                "enable detection, plugins and indenting in one step
 syntax on                                "Turn on syntax highlighting
 set ruler                                "Turn on the ruler
+set number                               "Show line numbers
+set cursorline                           "underline the current line in the file
+set cursorcolumn                         "highlight the current column. Visible in GUI mode only.
+set colorcolumn=80
+
 set background=dark                      "make vim use colors that look good on a dark background
+
 set showcmd                              "show incomplete cmds down the bottom
 set showmode                             "show current mode down the bottom
 set foldenable                           "enable folding
 set showmatch                            "set show matching parenthesis
 set noexrc                               "don't use the local config
 "set virtualedit=all                      "allow the cursor to go in to "invalid" places
+"
 set incsearch                            "find the next match as we type the search
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
+
 set shiftwidth=2                         "number of spaces to use in each autoindent step
 set tabstop=2                            "two tab spaces
 set softtabstop=2                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
 set expandtab                            "spaces instead of tabs for better cross-editor compatibility
 set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
+set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
+set nowrap                               "no wrapping
+
+set backspace=indent,eol,start           "allow backspacing over everything in insert mode
 set cindent                              "recommended seting for automatic C-style indentation
 set autoindent                           "automatic indentation in non-C files
-set nowrap                               "no wrapping
 set copyindent                           "copy the previous indentation on autoindenting
-set backspace=indent,eol,start           "allow backspacing over everything in insert mode
+
 set noerrorbells                         "don't make noise
-set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
-set cursorline                           "underline the current line in the file
-set cursorcolumn                         "highlight the current column. Visible in GUI mode only.
-set colorcolumn=80
 set wildmenu                             "make tab completion act more like bash
 set wildmode=list:longest                "tab complete to longest common string, like bash
+
 "set mouse-=a                             "disable mouse automatically entering visual mode
 set mouse=a                              "enable mouse automatically entering visual mode
-set wrap!                                "Word wrap on
-set bs=2
-set number                               "Show line numbers
 set hidden                               "allow hiding buffers with unsaved changes
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
 
@@ -126,11 +131,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " ----------- Plugin Configuration ----------------------------------
 
-" ---- Ragtag bindings
-
-" Close tag with C-x
-imap <C-_> <C-x>/
-
 " ---- CTRL-P bindings
 
 " Open fuzzy finder with leader,f
@@ -176,5 +176,5 @@ nnoremap <F9> :Dispatch<CR>
 
 " ----------- Private Configuration ----------------------------------
 
-source ~/Dropbox/dotfiles/.vimrc_private
+source ~/Dropbox/dotfiles/.vim/vimrc_private
 
