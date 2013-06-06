@@ -58,4 +58,6 @@ bind g:cmd grid padding:5 0:6,4 1:8,3
 
 
 # Bindings
-bind 1:ctrl show 'iTerm','Google Chrome'
+bind 1:ctrl focus 'iTerm'
+bind 2:ctrl focus 'Google Chrome'
+

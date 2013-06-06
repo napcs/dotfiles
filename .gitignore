@@ -4,5 +4,5 @@
 .vim/bundle/*
 !.vim/bundle/vundle
 .ssh
-.vimrc_private
+vimrc_private
 .bash_private
