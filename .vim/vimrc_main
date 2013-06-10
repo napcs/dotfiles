@@ -127,6 +127,22 @@ map <F5> :set hls!<bar>set hls?<CR>
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
+" insert blank line above in Normal mode
+nnoremap <leader>O mzO<esc>`z
+
+" insert blank line below in Normal mode
+nnoremap <leader>o mzo<esc>`z
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <F6> :call NumberToggle()<cr>
+
 " ----------- Plugin Configuration ----------------------------------
 
 " ---- NERDTree  configuration

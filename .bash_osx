@@ -1,7 +1,8 @@
 echo "loading osx specific config"
 export ARCHFLAGS="-arch x86_64" 
 export JAVA_HOME=/Library/Java/Home
-
+export ECLIPSE_HOME="/Applications/Eclipse"
+export PATH=$PATH:~/android-sdks/platform-tools
 alias cleartermlogs='sudo rm -rf /private/var/log/asl/*.asl'
 
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
