@@ -34,5 +34,4 @@ Bundle 'napcs/vim-mycontrast'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'terryma/vim-multiple-cursors'
-
-
+Bundle 'christoomey/vim-tmux-navigator'

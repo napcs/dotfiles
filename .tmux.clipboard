@@ -1,9 +1,0 @@
-# OSX Clipboard support
-
-set-option -g default-command "reattach-to-user-namespace -l /bin/bash"
-
-bind C-v run "tmux set-buffer \"$(reattach-to-user-namespace pbpaste)\"; tmux paste-buffer"
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-
-# tmux 1.8 - press y in copy mode to copy selection to clipboard
-bind -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"

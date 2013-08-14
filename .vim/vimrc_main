@@ -1,4 +1,3 @@
-
 " Cross-platform Vim Configuration goes in this file
 "
 " Contents
@@ -77,8 +76,8 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
   
-if has("gui_running")
 " Use a bar-shaped cursor for insert mode, even through tmux.
+if has("gui_running")
   if exists('$TMUX')
       let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
       let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -94,9 +93,9 @@ let mapleader = ","                      "remap leader to ',' which is much easi
 "Switch to previous file with ',,'
 nmap <leader><leader> <C-^> 
 
-
 " Open Taglist with [,s]
 map <Leader>s :TlistToggle<CR>
+
 " Use leader x to remove the current line but not erase buffer
 map <Leader>x "_dd
 
@@ -112,9 +111,27 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=.svn --verbose=
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
 
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+   if &wrap
+      return "g" . a:movement
+   else
+      return a:movement
+   endif
+endfunction
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+
 " Supports pasting in from the clipboard
 set pastetoggle=<F2>
-
 
 " Navigate tabs
 map <F3> :tabp<CR>                       
@@ -142,6 +159,9 @@ function! NumberToggle()
 endfunc
 
 nnoremap <F6> :call NumberToggle()<cr>
+
+" -- Spelling
+map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 " ----------- Plugin Configuration ----------------------------------
 
