@@ -150,6 +150,10 @@ nnoremap <leader>O mzO<esc>`z
 " insert blank line below in Normal mode
 nnoremap <leader>o mzo<esc>`z
 
+" Sort CSS properties alphabetically
+nnoremap <leader>css :g#\({\n\)\@<=#.,/}/sort<cr>
+
+" -- Number toggling
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
@@ -189,10 +193,6 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 map <Leader>A :AckG 
 map <Leader>a :Ack
 
-" ---- vim clojure
-
-let vimclojure#HighlightBuiltins=1  " Highlight Clojure's builtins
-let vimclojure#ParenRainbow=1       " Rainbow parentheses
 
 " ---- vimux configs
 

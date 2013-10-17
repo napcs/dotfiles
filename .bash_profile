@@ -22,7 +22,7 @@ alias ev='vim ~/Dropbox/dotfiles/.vim/vimrc_main'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
 
-alias serve="ruby -rwebrick -e\"s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start\""
+alias s="python -m SimpleHTTPServer"
 
 
 # TMUXINATOR
