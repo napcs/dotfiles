@@ -164,7 +164,7 @@ endfunc
 
 nnoremap <F6> :call NumberToggle()<cr>
 
-" -- Spelling
+" Spell check toggle
 map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 " ----------- Plugin Configuration ----------------------------------
