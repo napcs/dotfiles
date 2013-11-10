@@ -19,6 +19,7 @@ alias migrate='rake db:migrate; db:test:prepare'
 alias psr='ps -ef | grep'
 alias ep='vim ~/.bash_profile'
 alias ev='vim ~/Dropbox/dotfiles/.vim/vimrc_main'
+alias evv='vim ~/Dropbox/dotfiles/.vim/vundle'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
 
@@ -36,11 +37,12 @@ PS1='\W$(__git_ps1 " Branch:(%s)")\$ '
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 PS1="\$(~/.rvm/bin/rvm-prompt v g) $PS1"
 
-# Special OS specific stuff I need
+# Linux configuration
 if [ -f ~/.bash_linux ]; then
    source ~/.bash_linux
 fi
 
+# Special OS specific stuff I need
 if [ -f ~/.bash_osx ]; then
    source ~/.bash_osx
 fi
@@ -51,4 +53,4 @@ if [ -f ~/.bash_private ]; then
 fi
 
 export PATH="~/bin:/opt/tmux/bin:/usr/local/bin:$PATH"
-export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH"

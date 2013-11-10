@@ -21,7 +21,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-ragtag'
 Bundle 'tsaleh/vim-align'
-Bundle 'msanders/snipmate.vim'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'geekq/ack.vim'
 Bundle 'tpope/vim-markdown'
@@ -34,4 +33,10 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'christoomey/vim-tmux-navigator'
+
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
+Bundle "matthewsimo/angular-vim-snippets"
 

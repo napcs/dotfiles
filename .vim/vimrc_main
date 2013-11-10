@@ -53,6 +53,8 @@ set mouse=a                              "enable mouse automatically entering vi
 set hidden                               "allow hiding buffers with unsaved changes
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
 
+set clipboard=unnamed                    "Use system clipboard by default
+
 " Set up the backup directories to a central place.
 set backupdir=$HOME/tmp/backup//        
 set directory=$HOME/tmp/backup//
