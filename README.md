@@ -34,7 +34,8 @@ ln -nfs ~/Dropbox/dotfiles/.gemrc ~/.gemrc
 ln -nfs ~/Dropbox/dotfiles/.irbrc ~/.irbrc
 ln -nfs ~/Dropbox/dotfiles/.git_completion.bash ~/.git_completion.bash
 ln -nfs ~/Dropbox/dotfiles/.tmux.conf ~/.tmux.conf
-ln -nfs ~/Dropbox/dotfiles/.tmux.clipboard ~/.tmux.clipboard
+ln -nfs ~/Dropbox/dotfiles/.tmux.osx.clipboard ~/.tmux.osx.clipboard
+ln -nfs ~/Dropbox/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
 ln -nfs ~/Dropbox/dotfiles/.ackrc ~/.ackrc
 
 ~~~
