@@ -52,5 +52,7 @@ if [ -f ~/.bash_private ]; then
    source ~/.bash_private
 fi
 
+export GOPATH=$HOME/go
 export PATH="~/bin:/opt/tmux/bin:/usr/local/bin:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH:$HOME/go/bin"
+
