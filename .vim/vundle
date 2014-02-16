@@ -29,7 +29,6 @@ Bundle 'jgdavey/vim-turbux'
 Bundle 'tpope/vim-rake'
 Bundle 'airblade/vim-rooter'
 Bundle 'napcs/vim-mycontrast'
-Bundle 'vim-scripts/taglist.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -39,4 +38,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle "matthewsimo/angular-vim-snippets"
+Bundle "jnwhiteh/vim-golang"
 
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'majutsushi/tagbar'

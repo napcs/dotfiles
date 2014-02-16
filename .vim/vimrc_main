@@ -96,7 +96,7 @@ let mapleader = ","                      "remap leader to ',' which is much easi
 nmap <leader><leader> <C-^> 
 
 " Open Taglist with [,s]
-map <Leader>s :TlistToggle<CR>
+map <Leader>s :TagbarToggle<CR>
 
 " Use leader x to remove the current line but not erase buffer
 map <Leader>x "_dd
@@ -104,7 +104,7 @@ map <Leader>x "_dd
 " Exit insert mode with ii                                                              
 imap ii <Esc>
 
-" reload file
+" reload current file
 map <Leader>r :so %<CR>  
                       
 " ctags
@@ -217,9 +217,12 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 
 autocmd FileType java let b:dispatch = 'javac %'
 autocmd FileType coffee let b:dispatch = 'coffee -c %'
-autocmd FileType html let b:dispatch = 'open %'
 nnoremap <F9> :Dispatch<CR>
 
+autocmd FileType ruby nmap <Leader>g :!ruby %<cr>
+autocmd FileType go  nmap <Leader>g :!go run %<cr>
+autocmd FileType html  nmap <Leader>g :!open %<cr>
+autocmd FileType js  nmap <Leader>g :!node %<cr>
 " ----------- Private Configuration ----------------------------------
 
 source ~/Dropbox/dotfiles/.vim/vimrc_private
