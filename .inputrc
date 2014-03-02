@@ -1,6 +1,6 @@
-set completion-ignore-case On
+set completion-ignore-case Off
 set bell-style none
-set editing-mode vi
+#set editing-mode vi
 
 $if mode=vi
   set keymap vi-command

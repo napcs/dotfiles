@@ -60,7 +60,7 @@ set backupdir=$HOME/tmp/backup//
 set directory=$HOME/tmp/backup//
                                          
 " ----------- Visual Configuration ----------------------------------
-colorscheme vividchalk                   
+colorscheme mycontrast                   
 
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | | | | |  |   |      |  |     |    |
@@ -181,6 +181,10 @@ let NERDTreeMinimalUI=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_open_on_console_startup=1
 
+
+
+
+
 " ---- CTRL-P configuration
 
 " Open fuzzy finder with leader,f
@@ -219,11 +223,23 @@ autocmd FileType java let b:dispatch = 'javac %'
 autocmd FileType coffee let b:dispatch = 'coffee -c %'
 nnoremap <F9> :Dispatch<CR>
 
-autocmd FileType ruby nmap <Leader>g :!ruby %<cr>
-autocmd FileType go  nmap <Leader>g :!go run %<cr>
-autocmd FileType html  nmap <Leader>g :!open %<cr>
-autocmd FileType js  nmap <Leader>g :!node %<cr>
+
+" ----------- Launch configs ---------------------------------------
+autocmd FileType ruby nmap <Leader>g :!ruby "%"<cr>
+autocmd FileType go  nmap <Leader>g :!go run "%"<cr>
+
+if has('win32') || has ('win64')
+  autocmd FileType html  nmap <Leader>g :silent ! start firefox "%"<cr>
+elseif has('mac')
+  autocmd FileType html  nmap <Leader>g :!open "%"<cr>
+endif
+
+autocmd FileType js  nmap <Leader>g :!node "%"<cr>
+autocmd FileType md  nmap <Leader>g :!mark "%"<cr>
+autocmd FileType coffee  nmap <Leader>g :coffee "%"<cr>
+autocmd FileType groovy  nmap <Leader>g :!groovy "%"<cr>
+
 " ----------- Private Configuration ----------------------------------
 
-source ~/Dropbox/dotfiles/.vim/vimrc_private
+source ~/.vim/vimrc_private
 
