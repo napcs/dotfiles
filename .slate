@@ -10,7 +10,7 @@ bind right:ctrl;shift           resize +10% +0
 bind left:ctrl;shift            resize -10% +0
 bind up:ctrl;shift              resize +0   -10%
 bind down:ctrl;shift            resize +0   +10%
-bind m:ctrl;alt;cmd      move 0;0 screenSizeX;screenSizeY
+bind m:ctrl;alt;cmd      move screenOriginX;screenOriginY screenSizeX;screenSizeY
 
 # Push Bindings
 bind up:ctrl;alt;cmd     push up    bar-resize:screenSizeY/2
@@ -33,6 +33,8 @@ bind down:shift;alt  nudge +0   +10%
 # Throw Bindings
 bind right:ctrl;alt throw right 
 bind left:ctrl;alt  throw left  
+bind up:ctrl;alt  throw above  
+bind down:ctrl;alt  throw below  
 
 # Focus Bindings
 bind left:ctrl      focus left
@@ -42,13 +44,10 @@ bind down:ctrl      focus down
 bind up:cmd;alt     focus behind
 bind down:cmd;alt   focus behind
 
-# Window Hints
-bind esc:cmd hint
-
 # Shows app icons and background apps, spreads icons in the same place.
 config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
-config windowHintsSpread false
+config windowHintsSpread true
 
 #window hints
 bind e:cmd hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
@@ -56,8 +55,15 @@ bind e:cmd hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
 # Grid
 bind g:cmd grid padding:5 0:6,4 1:8,3
 
-
 # Bindings
 bind 1:ctrl focus 'iTerm'
-bind 2:ctrl focus 'Google Chrome'
+bind 2:ctrl focus 'Firefox'
+bind 2:ctrl focus 'Markdown Pro'
+bind 4:ctrl focus 'Colloquy'
+bind 5:ctrl focus 'Tweetbot'
 
+
+layout myLayout 'iTerm' push up bar-resize:screenSizeY/2 | push down bar-resize:screenSizeY/2
+layout myLayout 'Firefox' push left bar-resize:screenSizeX/2 | push right bar-resize:screenSizeX/2
+
+bind 6:ctrl layout myLayout
