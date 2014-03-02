@@ -5,21 +5,24 @@ export HISTIGNORE="fg*"
 
 bind '"\C-f": "fg %-\n"'
 
+export PATH="/usr/local/bin:~/bin:/usr/local/share/npm/bin:/usr/local/heroku/bin:$HOME/go/bin:$PATH"
 # aliases
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall"
 alias irb='irb --readline -r irb/completion -rubygems'
 alias rc='bundle exec rails console'
 alias rcs='bundle exec rails console --sandbox'
 alias rs='bundle exec rails server'
-alias irc='irssi -n bphogan -c irc.freenode.net'
 alias t='tmuxinator'
-alias tn='unset TMPDIR && tmux new-session -s'
-alias ta='unset TMPDIR && tmux attach -t'
+alias tn='tmux new-session -s'
+alias ta='tmux attach -t'
+alias tnu='unset TMPDIR && tmux new-session -s'
+alias tau='unset TMPDIR && tmux attach -t'
 alias migrate='rake db:migrate; db:test:prepare'
 alias psr='ps -ef | grep'
 alias ep='vim ~/.bash_profile'
-alias ev='vim ~/Dropbox/dotfiles/.vim/vimrc_main'
-alias evv='vim ~/Dropbox/dotfiles/.vim/vundle'
+alias ev='vim ~/.vim/vimrc_main'
+alias evv='vim ~/.vim/vundle'
+alias evp='vim ~/.vim/vimrc_private'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
 
@@ -35,7 +38,7 @@ PS1='\W$(__git_ps1 " Branch:(%s)")\$ '
 
 # RVM
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-PS1="\$(~/.rvm/bin/rvm-prompt v g) $PS1"
+PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
@@ -53,6 +56,5 @@ if [ -f ~/.bash_private ]; then
 fi
 
 export GOPATH=$HOME/go
-export PATH="~/bin:/opt/tmux/bin:/usr/local/bin:$PATH"
-export PATH="/usr/local/share/npm/bin:/usr/local/heroku/bin:$PATH:$HOME/go/bin"
+
 
