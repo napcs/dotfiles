@@ -14,3 +14,4 @@ alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iP
 # clean out the open with database
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
+alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
