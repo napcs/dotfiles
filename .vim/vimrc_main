@@ -25,7 +25,7 @@ set showmode                             "show current mode down the bottom
 set foldenable                           "enable folding
 set showmatch                            "set show matching parenthesis
 set noexrc                               "don't use the local config
-"set virtualedit=all                      "allow the cursor to go in to "invalid" places
+set virtualedit=all                      "allow the cursor to go in to "invalid" places
 "
 set incsearch                            "find the next match as we type the search
 set hlsearch                             "hilight searches by default
@@ -88,6 +88,9 @@ if has("gui_running")
       let &t_EI = "\<Esc>]50;CursorShape=0\x7"
   endif
 endif
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+" set listchars=tab:▸\ ,eol:¬
 
 " ----------- Shortcut Key Configuration ----------------------------------
 let mapleader = ","                      "remap leader to ',' which is much easier than '\'
@@ -101,6 +104,9 @@ map <Leader>s :TagbarToggle<CR>
 " Use leader x to remove the current line but not erase buffer
 map <Leader>x "_dd
 
+" Use leader l to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
 " Exit insert mode with ii                                                              
 imap ii <Esc>
 
@@ -112,6 +118,10 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=.svn --verbose=
 
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
+
+" Buffer movement
+  map <C-J> :bp<CR>
+  map <C-K> :bp<CR>
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
