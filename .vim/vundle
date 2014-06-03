@@ -36,6 +36,10 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle "matthewsimo/angular-vim-snippets"
 Bundle "jnwhiteh/vim-golang"
-Bundle 'jelera/vim-javascript-syntax'
+Bundle "pangloss/vim-javascript"
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/dbext.vim'
+Bundle 'mklabs/grunt.vim'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'napcs/my-vim-snippets'
