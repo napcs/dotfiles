@@ -7,6 +7,7 @@ bind '"\C-f": "fg %-\n"'
 
 export PATH="/usr/local/bin:~/bin:/usr/local/share/npm/bin:/usr/local/heroku/bin:$HOME/go/bin:$PATH"
 # aliases
+alias dir="ls -alh"
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall"
 alias irb='irb --readline -r irb/completion -rubygems'
 alias rc='bundle exec rails console'
@@ -25,6 +26,7 @@ alias evv='vim ~/.vim/vundle'
 alias evp='vim ~/.vim/vimrc_private'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
+alias mkdir='mkdir -p'
 
 alias s="python -m SimpleHTTPServer"
 

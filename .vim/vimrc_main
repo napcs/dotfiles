@@ -245,9 +245,10 @@ elseif has('mac')
 endif
 
 autocmd FileType js  nmap <Leader>g :!node "%"<cr>
-autocmd FileType md  nmap <Leader>g :!mark "%"<cr>
 autocmd FileType coffee  nmap <Leader>g :coffee "%"<cr>
+autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr>
 autocmd FileType groovy  nmap <Leader>g :!groovy "%"<cr>
+autocmd FileType sh  nmap <Leader>g :!sh "%"<cr>
 
 " ----------- Private Configuration ----------------------------------
 

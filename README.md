@@ -26,8 +26,6 @@ I don't recommend that you clone this repo and use it. It's fine to go through a
 
 I set this up by cloning the entire thing to ~/Dropbox/dotfiles. I don't sync them across machines with Git - I just use Dropbox, and use Git to version and share them.
 
-
-
 So
 
     $ git clone https://github.com/napcs/dotfiles.git ~/Dropbox/dotfiles
@@ -36,12 +34,13 @@ So
     $ brew install tmux
     $ brew install ctags
     $ brew install reattach-to-user-namespace
+
+Then create a folder for the Vim backup folder:
+
     $ mkdir -p ~/tmp/backup
 
 
-
-And then open a new terminal.
-I then symlink things appropriately.
+Then create symlinks (soft links) to the files in the `~/Dropbox/dotfiles` folder:
 
 ~~~
 ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
@@ -49,6 +48,7 @@ ln -nfs ~/Dropbox/dotfiles/.bash_osx ~/.bash_osx
 ln -nfs ~/Dropbox/dotfiles/.vimrc ~/.vimrc
 ln -nfs ~/Dropbox/dotfiles/.vim ~/.vim
 ln -nfs ~/Dropbox/dotfiles/.slate ~/.slate
+ln -nfs ~/Dropbox/dotfiles/.slate.js ~/.slate.js
 ln -nfs ~/Dropbox/dotfiles/.gemrc ~/.gemrc
 ln -nfs ~/Dropbox/dotfiles/.irbrc ~/.irbrc
 ln -nfs ~/Dropbox/dotfiles/.git_completion.bash ~/.git_completion.bash
@@ -99,8 +99,9 @@ Again, I don't recommend that you clone this and use it. It's not really designe
 
 #### Misc
 
-* `,,` switches between two files
-* `,sp` toggles spell check
+* `,,` switches between the two most recent files
+* `F2` toggles paste-mode insert.  Turn this on if you want to paste from your terminal to preserve formatting. Turn it off when done.
+* `,sp` toggles spell check on and off.
 * `,g` will attempt to launch the program for the current file
 * `jj` in INSERT mode will exit INSERT mode and save the file
 * `ii` in INSERT mode exits INSERT mode
