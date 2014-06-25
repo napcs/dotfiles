@@ -96,7 +96,7 @@ endif
 let mapleader = ","                      "remap leader to ',' which is much easier than '\'
 
 "Switch to previous file with ',,'
-nmap <leader><leader> <C-^> 
+nmap <leader><SPACE> <C-^> 
 
 " Open Taglist with [,s]
 map <Leader>s :TagbarToggle<CR>

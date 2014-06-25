@@ -99,7 +99,7 @@ Again, I don't recommend that you clone this and use it. It's not really designe
 
 #### Misc
 
-* `,,` switches between the two most recent files
+* `,<spacebar>` switches between the two most recent files
 * `F2` toggles paste-mode insert.  Turn this on if you want to paste from your terminal to preserve formatting. Turn it off when done.
 * `,sp` toggles spell check on and off.
 * `,g` will attempt to launch the program for the current file
