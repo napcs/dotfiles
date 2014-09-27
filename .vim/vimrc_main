@@ -25,8 +25,7 @@ set showmode                             "show current mode down the bottom
 set foldenable                           "enable folding
 set showmatch                            "set show matching parenthesis
 set noexrc                               "don't use the local config
-set virtualedit=all                      "allow the cursor to go in to "invalid" places
-"
+"set virtualedit=all                      "allow the cursor to go in to "invalid" places
 set incsearch                            "find the next match as we type the search
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
@@ -95,7 +94,7 @@ endif
 " ----------- Shortcut Key Configuration ----------------------------------
 let mapleader = ","                      "remap leader to ',' which is much easier than '\'
 
-"Switch to previous file with ',,'
+"Switch to previous file with ',spacebar'
 nmap <leader><SPACE> <C-^> 
 
 " Open Taglist with [,s]
@@ -146,7 +145,7 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 set pastetoggle=<F2>
 
 " Navigate tabs
-map <F3> :tabp<CR>                       
+map <F3> :tabp<CR>
 map <F4> :tabn<CR>
 
 " Turn text search highlight on/off with F5 key
@@ -229,14 +228,16 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 
 " ----------- Dispatch configs ---------------------------------------
 
-autocmd FileType java let b:dispatch = 'javac %'
 autocmd FileType coffee let b:dispatch = 'coffee -c %'
-nnoremap <F9> :Dispatch<CR>
+autocmd BufEnter *_test.exs let b:dispatch = 'mix test %'
+
+nnoremap <Leader>e :Dispatch<CR>
 
 
 " ----------- Launch configs ---------------------------------------
 autocmd FileType ruby nmap <Leader>g :!ruby "%"<cr>
 autocmd FileType go  nmap <Leader>g :!go run "%"<cr>
+autocmd FileType java  nmap <Leader>g :!javac "%"<cr>
 
 if has('win32') || has ('win64')
   autocmd FileType html  nmap <Leader>g :silent ! start firefox "%"<cr>
@@ -249,6 +250,11 @@ autocmd FileType coffee  nmap <Leader>g :coffee "%"<cr>
 autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr>
 autocmd FileType groovy  nmap <Leader>g :!groovy "%"<cr>
 autocmd FileType sh  nmap <Leader>g :!sh "%"<cr>
+autocmd FileType python  nmap <Leader>g :!python "%"<cr>
+autocmd FileType elixir  nmap <Leader>g :!elixir "%"<cr>
+
+" Elixir tests should run mix
+autocmd BufEnter *_test.exs nmap <Leader>g :!mix test<cr>
 
 " ----------- Private Configuration ----------------------------------
 
