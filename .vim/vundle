@@ -8,43 +8,103 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
+" For Ruby / Rails dev
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rake'
+
+" CoffeeScript support
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-endwise'
+
+" Fuzzy finder
 Bundle 'kien/ctrlp.vim'
+
+" File tree
 Bundle 'scrooloose/nerdtree'
+
+" Support Block comments in visual mode with ,cc and ,cu
 Bundle 'scrooloose/nerdcommenter'
+
+" better support for ending statements in Ruby/C/Lua/etc
+Bundle 'tpope/vim-endwise'
+
+" better support for wrapping things with parens, quotes, braces
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-ragtag'
+
+" align variables and operators.
 Bundle 'tsaleh/vim-align'
-Bundle 'geekq/ack.vim'
+
+" HTML support
+Bundle 'tpope/vim-ragtag'
+
+" Markdown
 Bundle 'tpope/vim-markdown'
+
+" Tmux related
 Bundle 'benmills/vimux'
 Bundle 'jgdavey/vim-turbux'
-Bundle 'tpope/vim-rake'
-Bundle 'airblade/vim-rooter'
-Bundle 'napcs/vim-mycontrast'
-Bundle 'tpope/vim-dispatch'
-Bundle 'terryma/vim-multiple-cursors'
 Bundle 'christoomey/vim-tmux-navigator'
+
+" launch build processes and other things in splits or tmux.
+Bundle 'tpope/vim-dispatch'
+
+" Ack (better searching)
+Bundle 'geekq/ack.vim'
+
+" Sets project root to wherever the root of the repository is.
+Bundle 'airblade/vim-rooter'
+
+" My custom color scheme
+Bundle 'napcs/vim-mycontrast'
+
+" Snippet support
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-Bundle "matthewsimo/angular-vim-snippets"
-Bundle "jnwhiteh/vim-golang"
-Bundle "pangloss/vim-javascript"
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'mklabs/grunt.vim'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'scrooloose/syntastic'
 Bundle 'napcs/my-vim-snippets'
-Bundle 'ervandew/supertab'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'ap/vim-css-color'
-Bundle 'elixir-lang/vim-elixir'
 Bundle 'carlosgaldino/elixir-snippets'
+
+" Tagbar support for showing CTags
+Bundle 'majutsushi/tagbar'
+
+" Database support. Run queries and stuff
+Bundle 'vim-scripts/dbext.vim'
+
+" Support for Go.
+Bundle "jnwhiteh/vim-golang"
+
+" Support for Grunt
+Bundle 'mklabs/grunt.vim'
+
+" Syntax checking
+Bundle 'scrooloose/syntastic'
+
+" Tab completion for variables and other things
+Bundle 'ervandew/supertab'
+
+"Easy navigation with ,,
+Bundle 'Lokaltog/vim-easymotion'
+
+" Shows colors in your css
+Bundle 'ap/vim-css-color'
+
+" Elixir support
+Bundle 'elixir-lang/vim-elixir'
+
+"Git support
+Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
+
+" Shell support
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-shell'
+
+" Handlebars support
+Bundle 'mustache/vim-mustache-handlebars'
+
+" JavaScript libraries like jquery, etc
+Bundle 'othree/javascript-libraries-syntax.vim'

@@ -53,6 +53,8 @@ set hidden                               "allow hiding buffers with unsaved chan
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
 
 set clipboard=unnamed                    "Use system clipboard by default
+set splitright                           "splits open on the right.
+set splitbelow                           "splits open below existing window..
 
 " Set up the backup directories to a central place.
 set backupdir=$HOME/tmp/backup//        
@@ -61,8 +63,10 @@ set directory=$HOME/tmp/backup//
 " ----------- Visual Configuration ----------------------------------
 colorscheme mycontrast                   
 
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-"              | | | | |  |   |      |  |     |    |
+set statusline=%f%m%r%h%w[%l][%{&ff}]%y[%p%%][%04l,%04v][%n]
+"              | | | | |  |   |      |  |     |    |     |
+"              | | | | |  |   |      |  |     |    |     + current
+"              | | | | |  |   |      |  |     |    |       buffer
 "              | | | | |  |   |      |  |     |    + current
 "              | | | | |  |   |      |  |     |       column
 "              | | | | |  |   |      |  |     +-- current line
@@ -89,7 +93,7 @@ if has("gui_running")
 endif
  
 " Use the same symbols as TextMate for tabstops and EOLs
-" set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 
 " ----------- Shortcut Key Configuration ----------------------------------
 let mapleader = ","                      "remap leader to ',' which is much easier than '\'
@@ -106,21 +110,17 @@ map <Leader>x "_dd
 " Use leader l to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-" Exit insert mode with ii                                                              
-imap ii <Esc>
+" Exit insert mode with jk 
+imap jk <Esc>
 
-" reload current file
-map <Leader>r :so %<CR>  
+" reload configuration file
+map <Leader>r :so $MYVIMRC<CR>  
                       
 " ctags
 map <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=.svn --verbose=yes * <CR>
 
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
-
-" Buffer movement
-  map <C-J> :bp<CR>
-  map <C-K> :bp<CR>
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
@@ -141,8 +141,30 @@ nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
 nnoremap <silent> <expr> $ ScreenMovement("$")
 
-" Supports pasting in from the clipboard
-set pastetoggle=<F2>
+" Supports pasting in from the clipboard in the terminal
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+
 
 " Navigate tabs
 map <F3> :tabp<CR>
@@ -190,15 +212,12 @@ let NERDTreeMinimalUI=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_open_on_console_startup=1
 
-
-
-
-
 " ---- CTRL-P configuration
 
 " Open fuzzy finder with leader,f
 
 map <Leader>f :CtrlP<CR>
+map <Leader>b :CtrlPBuffer<CR>
 
 " Exclude files from ctrl-p finder
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
@@ -225,6 +244,8 @@ vmap <Leader>vs "vy :call VimuxRunCommand(@v . "\n", 0)<CR>
 " Select current paragraph and send it to tmux
 nmap <Leader>vs vip<LocalLeader>vs<CR>
 
+" ----------- Mustache / Handlebars ---------------------------------
+let g:mustache_abbreviations = 1
 
 " ----------- Dispatch configs ---------------------------------------
 
