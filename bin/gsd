@@ -15,13 +15,14 @@ fi
 # clean up previous entries from /etc/hosts
 sed -i -e '/#gsd$/d' $HOSTFILE
 # write hosts file if 'work' mode
-if [ "$1" != "--play" ]
-then
+if [ "$1" != "--play" ]; then
   for SITE in $SITES; do
     echo -e "127.0.0.1\t$SITE\t#gsd" >> $HOSTFILE
     echo -e "127.0.0.1\twww.$SITE\t#gsd" >> $HOSTFILE
   done
   echo "work mode enabled, run with --play to disable"
+else
+  echo "work mode disabled."
 fi
 if [ "$(uname -s)" == "Darwin" ]; then
   dscacheutil -flushcache
