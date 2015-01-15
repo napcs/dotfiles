@@ -6,7 +6,7 @@ set rtp+=$VIMHOME/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " For Ruby / Rails dev
@@ -94,6 +94,7 @@ Bundle 'ap/vim-css-color'
 
 " Elixir support
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'mattreduce/vim-mix'
 
 "Git support
 Bundle 'tpope/vim-fugitive'
@@ -108,3 +109,7 @@ Bundle 'mustache/vim-mustache-handlebars'
 
 " JavaScript libraries like jquery, etc
 Bundle 'othree/javascript-libraries-syntax.vim'
+
+" Strip whitespace
+Bundle 'itspriddle/vim-stripper'
+

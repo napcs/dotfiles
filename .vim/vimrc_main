@@ -56,12 +56,15 @@ set clipboard=unnamed                    "Use system clipboard by default
 set splitright                           "splits open on the right.
 set splitbelow                           "splits open below existing window..
 
+set exrc                                 "enable per-directory .vimrc files
+set secure                               "disable unsafe stuff from local .vimrc files
+
 " Set up the backup directories to a central place.
-set backupdir=$HOME/tmp/backup//        
+set backupdir=$HOME/tmp/backup//
 set directory=$HOME/tmp/backup//
-                                         
+
 " ----------- Visual Configuration ----------------------------------
-colorscheme mycontrast                   
+colorscheme mycontrast
 
 set statusline=%f%m%r%h%w[%l][%{&ff}]%y[%p%%][%04l,%04v][%n]
 "              | | | | |  |   |      |  |     |    |     |
@@ -80,7 +83,7 @@ set statusline=%f%m%r%h%w[%l][%{&ff}]%y[%p%%][%04l,%04v][%n]
 "              | | +-- readonly flag in square brackets
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
-  
+
 " Use a bar-shaped cursor for insert mode, even through tmux.
 if has("gui_running")
   if exists('$TMUX')
@@ -91,7 +94,7 @@ if has("gui_running")
       let &t_EI = "\<Esc>]50;CursorShape=0\x7"
   endif
 endif
- 
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
@@ -99,7 +102,7 @@ set listchars=tab:▸\ ,eol:¬
 let mapleader = ","                      "remap leader to ',' which is much easier than '\'
 
 "Switch to previous file with ',spacebar'
-nmap <leader><SPACE> <C-^> 
+nmap <leader><SPACE> <C-^>
 
 " Open Taglist with [,s]
 map <Leader>s :TagbarToggle<CR>
@@ -110,14 +113,14 @@ map <Leader>x "_dd
 " Use leader l to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-" Exit insert mode with jk 
+" Exit insert mode with jk
 imap jk <Esc>
 
 " reload configuration file
-map <Leader>r :so $MYVIMRC<CR>  
-                      
+map <Leader>r :so $MYVIMRC<CR>
+
 " ctags
-map <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=.svn --verbose=yes * <CR>
+map <Leader>ct :!ctags -R --exclude=.git --exclude=db/dumps --exclude=tmp --exclude=coverage --exclude=log --exclude=.svn --verbose=yes * <CR>
 
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
@@ -204,7 +207,7 @@ map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 " ---- NERDTree  configuration
 
-" Open NERDTree with [,d] 
+" Open NERDTree with [,d]
 map <Leader>d :NERDTreeToggle<CR>
 
 let NERDTreeShowLineNumbers=1
@@ -224,7 +227,7 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " ---- ack
 " Open ack and ackg
-map <Leader>A :AckG 
+map <Leader>A :AckG
 map <Leader>a :Ack
 
 
@@ -246,6 +249,12 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 
 " ----------- Mustache / Handlebars ---------------------------------
 let g:mustache_abbreviations = 1
+
+
+" ----------- Syntastic  ---------------------------------
+let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_cucumber_cucumber_args="--profile syntastic"
 
 " ----------- Dispatch configs ---------------------------------------
 
