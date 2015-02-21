@@ -1,5 +1,4 @@
 # My bash_profile settings.
-export TERM="xterm-256color"
 export EDITOR=vim
 export HISTIGNORE="fg*"
 
@@ -16,9 +15,10 @@ alias rs='bundle exec rails server'
 alias t='tmuxinator'
 alias tn='tmux new-session -s'
 alias ta='tmux attach -t'
+alias tl='tmux ls'
+alias tk='tmux kill-session -s'
 alias tnu='unset TMPDIR && tmux new-session -s'
 alias tau='unset TMPDIR && tmux attach -t'
-alias migrate='rake db:migrate; db:test:prepare'
 alias psr='ps -ef | grep'
 alias ep='vim ~/.bash_profile'
 alias ev='vim ~/.vim/vimrc_main'
@@ -29,7 +29,6 @@ alias et='vim ~/.tmux.conf'
 alias mkdir='mkdir -p'
 
 alias s="python -m SimpleHTTPServer"
-
 
 # TMUXINATOR
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
@@ -60,3 +59,12 @@ fi
 export GOPATH=$HOME/go
 
 
+tmux list-sessions 2> /dev/null
+
+if [[ ! $TERM =~ screen ]]; then
+  echo "want tmux?"
+  read answer
+  if [[ $answer == "y" ]]; then
+    tmux && exit 0
+  fi
+fi
