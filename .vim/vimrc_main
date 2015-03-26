@@ -6,12 +6,14 @@
 " Shortcut Key Configuration
 " Plugin Configuration
 " Private Configuration
+"
 
 " ----------- Main Configuration ----------------------------------
 
 set nocompatible                         "don't need to keep compatibility with Vi
 filetype plugin indent on                "enable detection, plugins and indenting in one step
 syntax on                                "Turn on syntax highlighting
+set encoding=utf-8                       "Force UTF-8 encoding for special characters
 set ruler                                "Turn on the ruler
 set number                               "Show line numbers
 set cursorline                           "underline the current line in the file
@@ -64,7 +66,11 @@ set backupdir=$HOME/tmp/backup//
 set directory=$HOME/tmp/backup//
 
 " ----------- Visual Configuration ----------------------------------
-colorscheme mycontrast
+try
+  colorscheme mycontrast
+catch
+  colorscheme murphy
+endtry
 
 set statusline=%f%m%r%h%w[%l][%{&ff}]%y[%p%%][%04l,%04v][%n]
 "              | | | | |  |   |      |  |     |    |     |
@@ -198,7 +204,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <F6> :call NumberToggle()<cr>
+nnoremap <F7> :call NumberToggle()<cr>
 
 " Spell check toggle
 map <leader>sp :setlocal spell! spelllang=en_us<CR>
@@ -265,9 +271,15 @@ nnoremap <Leader>e :Dispatch<CR>
 
 
 " ----------- Launch configs ---------------------------------------
-autocmd FileType ruby nmap <Leader>g :!ruby "%"<cr>
-autocmd FileType go  nmap <Leader>g :!go run "%"<cr>
-autocmd FileType java  nmap <Leader>g :!javac "%"<cr>
+if has('win32') || has ('win64')
+  let $CLEAR_COMMAND="cls"
+else
+  let $CLEAR_COMMAND="clear"
+endif
+
+autocmd FileType ruby nmap <Leader>g :!"$CLEAR_COMMAND"; ruby "%"<cr>
+autocmd FileType go  nmap <Leader>g :!"$CLEAR_COMMAND"; go run "%"<cr>
+autocmd filetype java nmap <Leader>g :!"$CLEAR_COMMAND"; javac "%" && java "%:r"<cr>
 
 if has('win32') || has ('win64')
   autocmd FileType html  nmap <Leader>g :silent ! start firefox "%"<cr>
@@ -275,18 +287,20 @@ elseif has('mac')
   autocmd FileType html  nmap <Leader>g :!open "%"<cr>
 endif
 
-autocmd FileType js  nmap <Leader>g :!node "%"<cr>
-autocmd FileType coffee  nmap <Leader>g :coffee "%"<cr>
+autocmd FileType js  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
+autocmd FileType coffee  nmap <Leader>g :!"$CLEAR_COMMAND"; coffee "%"<cr>
 autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr>
-autocmd FileType groovy  nmap <Leader>g :!groovy "%"<cr>
-autocmd FileType sh  nmap <Leader>g :!sh "%"<cr>
-autocmd FileType python  nmap <Leader>g :!python "%"<cr>
-autocmd FileType elixir  nmap <Leader>g :!elixir "%"<cr>
+autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>
+autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
+autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
+autocmd FileType elixir  nmap <Leader>g :!"$CLEAR_COMMAND"; elixir "%"<cr>
 
 " Elixir tests should run mix
-autocmd BufEnter *_test.exs nmap <Leader>g :!mix test<cr>
+autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 
 " ----------- Private Configuration ----------------------------------
 
-source ~/.vim/vimrc_private
+try
+  source ~/.vim/vimrc_private
+endtry
 
