@@ -284,7 +284,7 @@ autocmd filetype java nmap <Leader>g :!"$CLEAR_COMMAND"; javac "%" && java "%:r"
 if has('win32') || has ('win64')
   autocmd FileType html  nmap <Leader>g :silent ! start firefox "%"<cr>
 elseif has('mac')
-  autocmd FileType html  nmap <Leader>g :!open "%"<cr>
+  autocmd FileType html  nmap <Leader>g :!open "%"<cr><cr>
 endif
 
 autocmd FileType js  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
