@@ -36,13 +36,13 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
 " align variables and operators.
-Bundle 'tsaleh/vim-align'
+Bundle 'godlygeek/tabular'
 
 " HTML support
 Bundle 'tpope/vim-ragtag'
 
 " Markdown
-Bundle 'tpope/vim-markdown'
+Bundle 'plasticboy/vim-markdown'
 
 " Tmux related
 Bundle 'benmills/vimux'
@@ -114,9 +114,11 @@ Bundle 'othree/javascript-libraries-syntax.vim'
 " Strip whitespace
 Bundle 'itspriddle/vim-stripper'
 
-Bundle 'napcs/vim-nativescript'
+" support for Dash on OSX
+Plugin 'rizzatti/dash.vim'
 
-
+" Elm
+Plugin 'lambdatoast/elm.vim'
 
 " end
 call vundle#end()            " required

@@ -61,6 +61,8 @@ set splitbelow                           "splits open below existing window..
 set exrc                                 "enable per-directory .vimrc files
 set secure                               "disable unsafe stuff from local .vimrc files
 
+set laststatus=2                         "always show status line
+
 " Set up the backup directories to a central place.
 set backupdir=$HOME/tmp/backup//
 set directory=$HOME/tmp/backup//
@@ -173,6 +175,8 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
+" pastetoggle just in case
+set pastetoggle=<F2>
 
 
 " Navigate tabs
@@ -198,13 +202,25 @@ nnoremap <leader>css :g#\({\n\)\@<=#.,/}/sort<cr>
 " -- Number toggling
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
+    set norelativenumber
   else
     set relativenumber
   endif
 endfunc
 
 nnoremap <F7> :call NumberToggle()<cr>
+
+" Toggle background color for light and dark.
+" Default is dark.
+function! ColorToggle()
+  if(g:colors_name == "mycontrast")
+    colorscheme default
+  else
+    colorscheme mycontrast
+  endif
+endfunc
+
+nnoremap <F8> :call ColorToggle()<cr>
 
 " Spell check toggle
 map <leader>sp :setlocal spell! spelllang=en_us<CR>
@@ -259,8 +275,9 @@ let g:mustache_abbreviations = 1
 
 " ----------- Syntastic  ---------------------------------
 let g:syntastic_mode_map = { 'mode': 'active' }
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastiruby_checkers = ['mri']
 let g:syntastic_cucumber_cucumber_args="--profile syntastic"
+let g:syntic_javascript_checkers = ['jsxhint']
 
 " ----------- Dispatch configs ---------------------------------------
 
@@ -294,6 +311,7 @@ autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>
 autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
 autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
 autocmd FileType elixir  nmap <Leader>g :!"$CLEAR_COMMAND"; elixir "%"<cr>
+autocmd FileType elixir nmap <Leader>t :!"$CLEAR_COMMAND"; mix test<cr>
 
 " Elixir tests should run mix
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
@@ -302,5 +320,7 @@ autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 
 try
   source ~/.vim/vimrc_private
+catch
+  " no file.
 endtry
 
