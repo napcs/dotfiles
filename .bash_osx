@@ -1,8 +1,7 @@
 echo "loading osx specific config"
-export ARCHFLAGS="-arch x86_64" 
-export JAVA_HOME=/Library/Java/Home
+export ARCHFLAGS="-arch x86_64"
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export ECLIPSE_HOME="/Applications/Eclipse"
-export PATH=$PATH:~/android-sdks/platform-tools
 alias cleartermlogs='sudo rm -rf /private/var/log/asl/*.asl'
 
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -15,3 +14,19 @@ alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iP
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
 alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
+
+# Brew and homedir/bin in path first
+export PATH="/usr/local/bin:~/bin:$PATH"
+
+#node
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+#heroku
+export PATH="/usr/local/heroku/bin:$PATH"
+
+#go
+export PATH="$HOME/go/bin:$PATH"
+export GOPATH=$HOME/go
+
+# android sdk tools
+export PATH="$PATH:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools"

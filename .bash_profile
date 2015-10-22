@@ -4,7 +4,7 @@ export HISTIGNORE="fg*"
 
 bind '"\C-f": "fg %-\n"'
 
-export PATH="/usr/local/bin:~/bin:/usr/local/share/npm/bin:/usr/local/heroku/bin:$HOME/go/bin:$PATH"
+
 # aliases
 alias dir="ls -alh"
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall"
@@ -56,11 +56,11 @@ if [ -f ~/.bash_private ]; then
    source ~/.bash_private
 fi
 
-export GOPATH=$HOME/go
 
-
+# list tmux sessions
 tmux list-sessions 2> /dev/null
 
+# ask for tmux but only if we're not in tmux
 if [[ ! $TERM =~ screen ]]; then
   echo "want tmux?"
   read answer

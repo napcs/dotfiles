@@ -286,6 +286,18 @@ autocmd BufEnter *_test.exs let b:dispatch = 'mix test %'
 
 nnoremap <Leader>e :Dispatch<CR>
 
+" ----------- quoting -----------
+augroup textobj_quote
+  autocmd!
+  autocmd FileType markdown call textobj#quote#init()
+  autocmd FileType textile call textobj#quote#init()
+augroup END
+
+" ---------- Go -------
+autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
+
+" ---------- EEX Elixir templates -------
+autocmd BufRead,BufNewFile *.eex set ft=eex.html
 
 " ----------- Launch configs ---------------------------------------
 if has('win32') || has ('win64')
@@ -323,4 +335,3 @@ try
 catch
   " no file.
 endtry
-

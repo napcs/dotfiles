@@ -120,5 +120,9 @@ Plugin 'rizzatti/dash.vim'
 " Elm
 Plugin 'lambdatoast/elm.vim'
 
+" Quotes
+Plugin 'kana/vim-textobj-user'
+Plugin 'reedes/vim-textobj-quote'
+
 " end
 call vundle#end()            " required
