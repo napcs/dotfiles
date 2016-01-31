@@ -16,6 +16,7 @@ syntax on                                "Turn on syntax highlighting
 set encoding=utf-8                       "Force UTF-8 encoding for special characters
 set ruler                                "Turn on the ruler
 set number                               "Show line numbers
+set scrolloff=10                         "Keep 10 lines below cursor always
 set cursorline                           "underline the current line in the file
 set cursorcolumn                         "highlight the current column. Visible in GUI mode only.
 set colorcolumn=80
@@ -26,7 +27,6 @@ set showcmd                              "show incomplete cmds down the bottom
 set showmode                             "show current mode down the bottom
 set foldenable                           "enable folding
 set showmatch                            "set show matching parenthesis
-set noexrc                               "don't use the local config
 "set virtualedit=all                      "allow the cursor to go in to "invalid" places
 set incsearch                            "find the next match as we type the search
 set hlsearch                             "hilight searches by default
@@ -41,9 +41,10 @@ set shiftround                           "when at 3 spaces, and I hit > ... go t
 set nowrap                               "no wrapping
 
 set backspace=indent,eol,start           "allow backspacing over everything in insert mode
-set cindent                              "recommended seting for automatic C-style indentation
-set autoindent                           "automatic indentation in non-C files
-set copyindent                           "copy the previous indentation on autoindenting
+"set cindent                              "recommended seting for automatic C-style indentation
+"set autoindent                           "automatic indentation in non-C files
+"set copyindent                           "copy the previous indentation on autoindenting
+set smartindent
 
 set noerrorbells                         "don't make noise
 set wildmenu                             "make tab completion act more like bash
@@ -133,6 +134,7 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=db/dumps --exclude=tmp --excl
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
 
+
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
    if &wrap
@@ -214,7 +216,7 @@ nnoremap <F7> :call NumberToggle()<cr>
 " Default is dark.
 function! ColorToggle()
   if(g:colors_name == "mycontrast")
-    colorscheme default
+    colorscheme zellner
   else
     colorscheme mycontrast
   endif
@@ -240,8 +242,9 @@ let g:nerdtree_tabs_open_on_console_startup=1
 " ---- CTRL-P configuration
 
 " Open fuzzy finder with leader,f
-
 map <Leader>f :CtrlP<CR>
+
+" Fuzzy finder for buffers
 map <Leader>b :CtrlPBuffer<CR>
 
 " Exclude files from ctrl-p finder
@@ -324,7 +327,7 @@ autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
 autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
 autocmd FileType elixir  nmap <Leader>g :!"$CLEAR_COMMAND"; elixir "%"<cr>
 autocmd FileType elixir nmap <Leader>t :!"$CLEAR_COMMAND"; mix test<cr>
-
+autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%:t:r.js"<cr>
 " Elixir tests should run mix
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 

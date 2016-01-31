@@ -31,10 +31,10 @@ bind up:shift;alt    nudge +0   -10%
 bind down:shift;alt  nudge +0   +10%
 
 # Throw Bindings
-bind right:ctrl;alt throw right 
-bind left:ctrl;alt  throw left  
-bind up:ctrl;alt  throw above  
-bind down:ctrl;alt  throw below  
+bind right:ctrl;alt throw right
+bind left:ctrl;alt  throw left
+bind up:ctrl;alt  throw above
+bind down:ctrl;alt  throw below
 
 # Focus Bindings
 bind left:ctrl      focus left
@@ -50,7 +50,7 @@ config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
 
 #window hints
-bind e:cmd hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
+# bind e:cmd hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
 
 # Grid
 bind g:cmd grid padding:5 0:6,4 1:8,3
