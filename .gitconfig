@@ -1,0 +1,25 @@
+[user]
+	name = Brian Hogan
+	email = brianhogan@napcs.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[alias]
+  fit = !git reset --hard HEAD && git clean -f -d
+  cb = !git checkout -b
+  topcommits = !git shortlog -sne
+  commitsby = !git log -p --author=
+
+[core]
+	autocrlf = input
+	excludesfile = /Users/brianhogan/.gitignore
+[push]
+	default = simple
+[transfer]
+        fsckobjects = true
+[fetch]
+        fsckobjects = true
+[receive]
+        fsckObjects = true
