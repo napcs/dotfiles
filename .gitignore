@@ -1,8 +1,7 @@
 .DS_Store
-.vim/backup/*
-!.vim/backup/.gitkeep
-.vim/bundle/*
-!.vim/bundle/vundle
-.ssh
-vimrc_private
+.ssh/
+.vim/bundle
+.vim/plugin
+.vim/vimrc_private
+.vim/eclim
 .bash_private
