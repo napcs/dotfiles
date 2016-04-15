@@ -27,6 +27,7 @@ alias evp='vim ~/.vim/vimrc_private'
 alias rp='. ~/.bash_profile'
 alias et='vim ~/.tmux.conf'
 alias mkdir='mkdir -p'
+alias pastebin='curl -F c=@- https://ptpb.pw/'
 
 alias s="python -m SimpleHTTPServer"
 
@@ -57,11 +58,11 @@ if [ -f ~/.bash_private ]; then
 fi
 
 
-# list tmux sessions
-tmux list-sessions 2> /dev/null
 
 # ask for tmux but only if we're not in tmux
 if [[ ! $TERM =~ screen ]]; then
+  # list tmux sessions
+  tmux list-sessions 2> /dev/null
   echo "want tmux?"
   read answer
   if [[ $answer == "y" ]]; then
