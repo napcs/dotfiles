@@ -30,3 +30,6 @@ export GOPATH=$HOME/go
 
 # android sdk tools
 export PATH="$PATH:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools"
+
+# Firefox profile
+alias ffclean="/Applications/Firefox.app/Contents/MacOS/firefox-bin -P"
