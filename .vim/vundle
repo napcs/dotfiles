@@ -42,6 +42,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-ragtag'
 
 " Markdown
+" Relies on tabular, which must be loaded first
 Bundle 'plasticboy/vim-markdown'
 
 " Tmux related
@@ -118,7 +119,7 @@ Bundle 'itspriddle/vim-stripper'
 Plugin 'rizzatti/dash.vim'
 
 " Elm
-Plugin 'lambdatoast/elm.vim'
+Plugin 'elmcast/elm-vim'
 
 " Quotes
 Plugin 'kana/vim-textobj-user'

@@ -42,9 +42,9 @@ set nowrap                               "no wrapping
 
 set backspace=indent,eol,start           "allow backspacing over everything in insert mode
 "set cindent                              "recommended seting for automatic C-style indentation
-"set autoindent                           "automatic indentation in non-C files
+set autoindent                           "automatic indentation in non-C files
 "set copyindent                           "copy the previous indentation on autoindenting
-set smartindent
+"set smartindent
 
 set noerrorbells                         "don't make noise
 set wildmenu                             "make tab completion act more like bash
@@ -55,7 +55,7 @@ set mouse=a                              "enable mouse automatically entering vi
 set hidden                               "allow hiding buffers with unsaved changes
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
 
-set clipboard=unnamed                    "Use system clipboard by default
+set clipboard=unnamed,unnamedplus                    "Use system clipboard by default
 set splitright                           "splits open on the right.
 set splitbelow                           "splits open below existing window..
 
@@ -135,6 +135,7 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=db/dumps --exclude=tmp --excl
 imap jj <Esc>:w<CR>
 
 
+
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
    if &wrap
@@ -155,6 +156,7 @@ nnoremap <silent> <expr> ^ ScreenMovement("^")
 nnoremap <silent> <expr> $ ScreenMovement("$")
 
 " Supports pasting in from the clipboard in the terminal
+" https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 function! WrapForTmux(s)
   if !exists('$TMUX')
     return a:s
@@ -182,8 +184,8 @@ set pastetoggle=<F2>
 
 
 " Navigate tabs
-map <F3> :tabp<CR>
-map <F4> :tabn<CR>
+map <leader>1 :tabp<CR>
+map <leader>2 :tabn<CR>
 
 " Turn text search highlight on/off with F5 key
 map <F5> :set hls!<bar>set hls?<CR>
@@ -255,7 +257,12 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 map <Leader>A :AckG
 map <Leader>a :Ack
 
+" ---- Snipmate
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
 
+" ---- markdown configs
+let g:vim_markdown_folding_disabled = 1
 " ---- vimux configs
 
 let VimuxHeight = "33" "this is percentage
@@ -275,13 +282,21 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 " ----------- Mustache / Handlebars ---------------------------------
 let g:mustache_abbreviations = 1
 
-
 " ----------- Syntastic  ---------------------------------
 let g:syntastic_mode_map = { 'mode': 'active' }
-let g:syntastiruby_checkers = ['mri']
-let g:syntastic_cucumber_cucumber_args="--profile syntastic"
-let g:syntic_javascript_checkers = ['jsxhint']
+let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_cucumber_args="--profile syntastic"
+let g:syntastic_javascript_checkers = ['']
+let g:syntastic_html_checkers = ['']
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " ----------- Dispatch configs ---------------------------------------
 
 autocmd FileType coffee let b:dispatch = 'coffee -c %'
@@ -327,7 +342,7 @@ autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
 autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
 autocmd FileType elixir  nmap <Leader>g :!"$CLEAR_COMMAND"; elixir "%"<cr>
 autocmd FileType elixir nmap <Leader>t :!"$CLEAR_COMMAND"; mix test<cr>
-autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%:t:r.js"<cr>
+autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%:t:r.html" && open "%:t:r.html"<cr><cr>
 " Elixir tests should run mix
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 
