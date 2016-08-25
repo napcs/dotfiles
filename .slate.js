@@ -1,5 +1,5 @@
 var focusTerminal = slate.operation("focus", { "app" : "iTerm" });
-var focusBrowser = slate.operation("focus", {"app" : "Google Chrome"});
+var focusBrowser = slate.operation("focus", {"app" : "Firefox"});
 
 var lastFocusedApp = "";
 
@@ -23,4 +23,14 @@ slate.bind("2:ctrl;cmd", function(windowObject) {
   } else {
     focusBrowser.run(); // focus Chrome
   }
+});
+
+slate.bind("3:ctrl;cmd", function(windowObject) {
+  var app = slate.operation("focus", {"app" : "Tweetbot"});
+  app.run();
+});
+
+slate.bind("4:ctrl;cmd", function(windowObject) {
+  var app = slate.operation("focus", {"app" : "Colloquy"});
+  app.run();
 });
