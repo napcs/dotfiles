@@ -1,13 +1,19 @@
 echo "loading osx specific config"
+
+trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+ql () { qlmanage -p "$*" >& /dev/null; } # ql:           Opens any file in MacOS Quicklook Preview
 export ARCHFLAGS="-arch x86_64"
+
+# make sure Java8 is the defailt or some command line tools run slow.
+
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export ECLIPSE_HOME="/Applications/Eclipse"
 alias cleartermlogs='sudo rm -rf /private/var/log/asl/*.asl'
 
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
+# open simulator
 alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/"
 
 # clean out the open with database
@@ -33,3 +39,41 @@ export PATH="$PATH:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-to
 
 # Firefox profile
 alias ffclean="/Applications/Firefox.app/Contents/MacOS/firefox-bin -P"
+
+
+# iTerm2
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+
+
+#   cdf:  'Cd's to frontmost window of MacOS Finder
+#   ------------------------------------------------------
+    cdf () {
+        currFolderPath=$( /usr/bin/osascript <<EOT
+            tell application "Finder"
+                try
+            set currFolder to (folder of the front window as alias)
+                on error
+            set currFolder to (path to desktop folder as alias)
+                end try
+                POSIX path of currFolder
+            end tell
+EOT
+        )
+        echo "cd to \"$currFolderPath\""
+        cd "$currFolderPath"
+    }
+
+#   ii:  display useful host related informaton
+#   -------------------------------------------------------------------
+    ii() {
+        echo -e "\nYou are logged on ${RED}$HOST"
+        echo -e "\nAdditionnal information:$NC " ; uname -a
+        echo -e "\n${RED}Users logged on:$NC " ; w -h
+        echo -e "\n${RED}Current date :$NC " ; date
+        echo -e "\n${RED}Machine stats :$NC " ; uptime
+        echo -e "\n${RED}Current network location :$NC " ; scselect
+        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+        #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
+        echo
+    }
