@@ -6,28 +6,35 @@ bind '"\C-f": "fg %-\n"'
 
 
 # aliases
-alias dir="ls -alh"
-alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall"
-alias irb='irb --readline -r irb/completion -rubygems'
-alias rc='bundle exec rails console'
-alias rcs='bundle exec rails console --sandbox'
-alias rs='bundle exec rails server'
-alias t='tmuxinator'
-alias tn='tmux new-session -s'
-alias ta='tmux attach -t'
-alias tl='tmux ls'
-alias tk='tmux kill-session -s'
-alias tnu='unset TMPDIR && tmux new-session -s'
-alias tau='unset TMPDIR && tmux attach -t'
-alias psr='ps -ef | grep'
-alias ep='vim ~/.bash_profile'
-alias ev='vim ~/.vim/vimrc_main'
-alias evv='vim ~/.vim/vundle'
-alias evp='vim ~/.vim/vimrc_private'
-alias rp='. ~/.bash_profile'
-alias et='vim ~/.tmux.conf'
-alias mkdir='mkdir -p'
-alias pastebin='curl -F c=@- https://ptpb.pw/'
+
+# allow aliases to work with sudo
+alias sudo='sudo '
+
+alias path='echo -e ${PATH//:/\\n}'                           # display path
+alias ll="ls -alh"                                            # show long list
+alias irb='irb --readline -r irb/completion -rubygems'        # Make sure irb has rubygems and completion
+alias tn='tmux new-session -s'                                # tmux new session
+alias ta='tmux attach -t'                                     # tmux attach
+alias tl='tmux ls'                                            # list
+alias tk='tmux kill-session -s'                               # kill session name
+alias tnu='unset TMPDIR && tmux new-session -s'               # tmux new but unset temp dir
+alias tau='unset TMPDIR && tmux attach -t'                    # tmux attach but unset tmpdir for sockets
+alias psr='ps -ef | grep'                                     # show long listing of processes
+alias ep='vim ~/.bash_profile'                                # edit bash_profile
+alias ev='vim ~/.vim/vimrc_main'                              # edit shared vim conf
+alias evv='vim ~/.vim/vundle'                                 # edit vim plugins
+alias evp='vim ~/.vim/vimrc_private'                          # edit private vim settings
+alias rp='. ~/.bash_profile'                                  # edit bash profile
+alias et='vim ~/.tmux.conf'                                   # edit tmux conf
+alias md='mkdir -p'                                           # create folders with child folders
+alias pastebin='curl -F c=@- https://ptpb.pw/'                # create a pastebin
+alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall" # update vim bundles
+alias myip='curl icanhazip.com'                               # myip: Public facing IP Address
+
+# recursive directory listing
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
+mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir and jumps inside
 
 alias s="python -m SimpleHTTPServer"
 
@@ -38,9 +45,6 @@ alias s="python -m SimpleHTTPServer"
 source ~/.git_completion.bash
 PS1='\W$(__git_ps1 " Branch:(%s)")\$ '
 
-# RVM
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
@@ -57,7 +61,11 @@ if [ -f ~/.bash_private ]; then
    source ~/.bash_private
 fi
 
-
+# RVM
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
+  source $HOME/.rvm/scripts/rvm
+  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
+fi
 
 # ask for tmux but only if we're not in tmux
 if [[ ! $TERM =~ screen ]]; then
@@ -69,3 +77,4 @@ if [[ ! $TERM =~ screen ]]; then
     tmux && exit 0
   fi
 fi
+
