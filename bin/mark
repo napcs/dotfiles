@@ -1,2 +1,2 @@
 # Loads the Marked app
-open -a "Marked 2.app" "$1"
+open -a "Typora.app" "$1"
