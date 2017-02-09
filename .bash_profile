@@ -1,14 +1,19 @@
 # My bash_profile settings.
 export EDITOR=vim
 export HISTIGNORE="fg*"
+export TERM=xterm-256color
 
+# use vim to edit commands instead of emacs
+export VISUAL=vim
+set -o vi
+
+# bind c-f to bring back c-z app
 bind '"\C-f": "fg %-\n"'
 
 
 # aliases
 
-# allow aliases to work with sudo
-alias sudo='sudo '
+alias sudo='sudo ' # allow aliases to work with sudo
 
 alias path='echo -e ${PATH//:/\\n}'                           # display path
 alias ll="ls -alh"                                            # show long list
@@ -71,10 +76,11 @@ fi
 if [[ ! $TERM =~ screen ]]; then
   # list tmux sessions
   tmux list-sessions 2> /dev/null
-  echo "want tmux?"
-  read answer
-  if [[ $answer == "y" ]]; then
-    tmux && exit 0
-  fi
+  #echo "want tmux?"
+  #read answer
+  #if [[ $answer == "y" ]]; then
+    #tmux && exit 0
+  #fi
 fi
+
 
