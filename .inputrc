@@ -1,11 +1,17 @@
 set completion-ignore-case Off
 set bell-style none
-#set editing-mode vi
 
+set editing-mode vi
 $if mode=vi
   set keymap vi-command
+  # these are for vi-command mode
+  Control-l: clear-screen
   "gg": beginning-of-history
   "G": end-of-history
+
   set keymap vi-insert
-  "jj": vi-movement-mode
+  # these are for vi-insert mode
+  Control-l: clear-screen
+  # "jj": vi-movement-mode
   "\C-p": history-search-backward
+$endif
