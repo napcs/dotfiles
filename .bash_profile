@@ -10,7 +10,6 @@ set -o vi
 # bind c-f to bring back c-z app
 bind '"\C-f": "fg %-\n"'
 
-
 # aliases
 
 alias sudo='sudo ' # allow aliases to work with sudo
@@ -50,7 +49,6 @@ alias s="python -m SimpleHTTPServer"
 source ~/.git_completion.bash
 PS1='\W$(__git_ps1 " Branch:(%s)")\$ '
 
-
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
    source ~/.bash_linux
@@ -72,10 +70,18 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
   PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
 
+# direnv
+if hash direnv 2>/dev/null; then
+  eval "$(direnv hook bash)"
+else
+  echo "direnv not installed."
+fi
+
 # ask for tmux but only if we're not in tmux
 if [[ ! $TERM =~ screen ]]; then
   # list tmux sessions
   tmux list-sessions 2> /dev/null
+
   #echo "want tmux?"
   #read answer
   #if [[ $answer == "y" ]]; then
