@@ -33,6 +33,9 @@ So
     $ brew install vim
     $ brew install tmux
     $ brew install ctags
+    $ brew install direnv
+    $ brew install ack
+    $ brew install ranger
     $ brew install reattach-to-user-namespace
 
 Then create a folder for the Vim backup folder:
@@ -56,10 +59,12 @@ ln -nfs ~/Dropbox/dotfiles/.tmux.conf ~/.tmux.conf
 ln -nfs ~/Dropbox/dotfiles/.tmux.osx.clipboard ~/.tmux.osx.clipboard
 ln -nfs ~/Dropbox/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
 ln -nfs ~/Dropbox/dotfiles/.ackrc ~/.ackrc
+ln -nfs ~/Dropbox/dotfiles/.inputrc ~/.inputrc
+ln -nfs ~/Dropbox/dotfiles/.config ~/.config
 
 ~~~
 
-I also create a bin/ folder and symlink the files in bin/ in there.
+I also create a `bin/` folder and symlink the files in bin/ in there.
 
 ~~~
 $ mkdir -p ~/bin
