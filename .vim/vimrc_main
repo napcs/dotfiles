@@ -338,7 +338,7 @@ endif
 
 autocmd FileType js  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
 autocmd FileType coffee  nmap <Leader>g :!"$CLEAR_COMMAND"; coffee "%"<cr>
-autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr>
+autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr><cr>
 autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>
 autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
 autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
@@ -347,6 +347,11 @@ autocmd FileType elixir nmap <Leader>t :!"$CLEAR_COMMAND"; mix test<cr>
 autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%:t:r.html" && open "%:t:r.html"<cr><cr>
 " Elixir tests should run mix
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
+
+
+" ----------- Digraphs -------
+
+silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
 
 " ----------- Private Configuration ----------------------------------
 
