@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # edit this list, or set GSD_SITES to add your custom sites
-BASE_SITES="gmail.com inbox.google.com fark.com news.ycombinator.com reddit.com msnbc.com foxnews.com cnn.com facebook.com linkedin.com"
+# run with
+#   sudo gsd
+# restore with
+#   sudo gsd --play
+BASE_SITES="facebook.com"
 
-APPS="Tweetbot Airmail Slack Colloquy"
+APPS="Tweetbot"
 
 for APP in $APPS; do
   killall $APP > /dev/null 2>&1
