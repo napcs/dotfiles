@@ -1,11 +1,16 @@
 
-bind C-p run "tmux set-buffer \"$(xclip -o -selection clipboard)\"; tmux paste-buffer" 
+bind C-p run "tmux set-buffer \"$(xclip -o -selection clipboard)\"; tmux paste-buffer"
 bind C-c run "tmux save-buffer - | xclip -i -selection clipboard"
 
 
-# tmux 1.8 - press y in copy mode to copy selection to clipboard
-bind -t vi-copy y copy-pipe "xclip -i -selection clipboard"
+# tmux 2.3 - press y in copy mode to copy selection to clipboard
+# bind -t vi-copy y copy-pipe "xclip -i -selection clipboard"
 
-# tmux 1.8 - press enter in copy mode to send to clipboard
-unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "xclip -i -selection clipboard"
+# tmux 2.3  - press enter in copy mode to send to clipboard
+# unbind -t vi-copy Enter
+# bind-key -t vi-copy Enter copy-pipe "xclip -i -selection clipboard"
+
+# 2.4
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi "y" send -X copy-pipe-and-cancel "xclip -i -selection clipboard"
+bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "xclip -i -selection clipboard"
