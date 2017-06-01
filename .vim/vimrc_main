@@ -336,7 +336,7 @@ elseif has('mac')
   autocmd FileType html  nmap <Leader>g :!open "%"<cr><cr>
 endif
 
-autocmd FileType js  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
+autocmd FileType javascript  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
 autocmd FileType coffee  nmap <Leader>g :!"$CLEAR_COMMAND"; coffee "%"<cr>
 autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr><cr>
 autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>

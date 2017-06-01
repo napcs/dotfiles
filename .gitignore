@@ -3,5 +3,6 @@
 .vim/bundle
 .vim/plugin
 .vim/vimrc_private
+.vim/vundle_private
 .vim/eclim
 .bash_private

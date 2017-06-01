@@ -125,5 +125,19 @@ Plugin 'elmcast/elm-vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'reedes/vim-textobj-quote'
 
+" Unicode
+Plugin 'chrisbra/unicode.vim'
+
+" vimwiki
+Plugin 'vimwiki/vimwiki'
+
+
+try
+  source $VIMHOME/vundle_private
+catch
+  " no file.
+endtry
+
+
 " end
 call vundle#end()            " required
