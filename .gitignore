@@ -6,3 +6,6 @@
 .vim/vundle_private
 .vim/eclim
 .bash_private
+.config/ranger/history
+.config/ranger/bookmarks
+.config/ranger/tagged
