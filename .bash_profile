@@ -1,10 +1,10 @@
 # My bash_profile settings.
 export EDITOR=vim
 export HISTIGNORE="fg*"
-export TERM=xterm-256color
+
+export VISUAL=vim
 
 # use vim to edit commands instead of emacs
-export VISUAL=vim
 set -o vi
 
 # bind c-f to bring back c-z app
@@ -47,7 +47,7 @@ alias s="python -m SimpleHTTPServer"
 
 # GIT
 source ~/.git_completion.bash
-PS1='\W$(__git_ps1 " Branch:(%s)")\$ '
+PS1='\W$(__git_ps1 " (%s)") \$ '
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
@@ -87,6 +87,7 @@ if [[ ! $TERM =~ screen ]]; then
   #if [[ $answer == "y" ]]; then
     #tmux && exit 0
   #fi
+
 fi
 
 
