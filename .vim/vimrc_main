@@ -341,7 +341,7 @@ autocmd FileType coffee  nmap <Leader>g :!"$CLEAR_COMMAND"; coffee "%"<cr>
 autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr><cr>
 autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>
 autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
-autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python "%"<cr>
+autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python3 "%"<cr>
 autocmd FileType elixir  nmap <Leader>g :!"$CLEAR_COMMAND"; elixir "%"<cr>
 autocmd FileType elixir nmap <Leader>t :!"$CLEAR_COMMAND"; mix test<cr>
 autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%:t:r.html" && open "%:t:r.html"<cr><cr>

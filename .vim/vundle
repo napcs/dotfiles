@@ -77,7 +77,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/dbext.vim'
 
 " Support for Go.
-Bundle "jnwhiteh/vim-golang"
+Bundle "fatih/vim-go"
 
 " Support for Grunt
 Bundle 'mklabs/grunt.vim'
