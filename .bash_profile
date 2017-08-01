@@ -10,7 +10,8 @@ export HISTIGNORE="fg*"
 export VISUAL=vim
 
 # use vim to edit commands instead of emacs
-set -o vi
+# Uncomment if you want that.
+# set -o vi
 
 # bind c-f to bring back c-z app
 bind '"\C-f": "fg %-\n"'
