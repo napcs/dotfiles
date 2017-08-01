@@ -48,6 +48,9 @@ mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir an
 
 alias s="python -m SimpleHTTPServer"
 
+# Erlang/iex history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 # TMUXINATOR
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
