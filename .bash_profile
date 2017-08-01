@@ -13,7 +13,7 @@ export VISUAL=vim
 # Uncomment if you want that.
 # set -o vi
 
-# bind c-f to bring back c-z app
+# bind c-f to bring back c-z app instead of fg
 bind '"\C-f": "fg %-\n"'
 
 # aliases
