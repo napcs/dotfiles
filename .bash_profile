@@ -63,6 +63,14 @@ export UNCOLORED_PROMPT='\W$(__git_ps1 " (%s)") \$ '
 
 PS1=$CUSTOM_PROMPT
 
+# RVM
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
+  source $HOME/.rvm/scripts/rvm
+
+  # add Ruby version to prompt
+  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
+fi
+
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
    source ~/.bash_linux
@@ -78,11 +86,7 @@ if [ -f ~/.bash_private ]; then
    source ~/.bash_private
 fi
 
-# RVM
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
-  source $HOME/.rvm/scripts/rvm
-  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
-fi
+
 
 # direnv
 if hash direnv 2>/dev/null; then
