@@ -53,7 +53,12 @@ alias s="python -m SimpleHTTPServer"
 
 # GIT
 source ~/.git_completion.bash
-PS1='\W$(__git_ps1 " (%s)") \$ '
+
+# Prompt
+export CUSTOM_PROMPT='\[\033[38;5;10m\]\W\[\033[38;5;15m\]$(__git_ps1 " (%s)")\[\033[38;5;14m\] \$\[$(tput sgr0)\] '
+export UNCOLORED_PROMPT='\W$(__git_ps1 " (%s)") \$ '
+
+PS1=$CUSTOM_PROMPT
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
