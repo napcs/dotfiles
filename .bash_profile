@@ -1,3 +1,8 @@
+# load .bashrc
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+
 # My bash_profile settings.
 export EDITOR=vim
 export HISTIGNORE="fg*"
