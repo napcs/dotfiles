@@ -62,6 +62,9 @@ alias cleartermlogs='sudo rm -rf /private/var/log/asl/*.asl'
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
+# gtimeout is from coreutils - but they're all prefixed with g. I want the one that works like ubuntu :)
+alias timeout='gtimeout'
+
 # open simulator
 alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/"
 
