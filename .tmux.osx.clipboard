@@ -1,11 +1,12 @@
 # OSX Clipboard support
 
-set-option -g default-command "reattach-to-user-namespace -l /bin/bash"
+# set-option -g default-command "reattach-to-user-namespace -l /bin/bash"
 
-bind C-v run \
-"tmux set-buffer \"$(reattach-to-user-namespace pbpaste)\"; tmux paste-buffer"
 
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+# bind C-v run \
+# "tmux set-buffer \"$(reattach-to-user-namespace pbpaste)\"; tmux paste-buffer"
+
+# bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 # tmux 2.3 - press y in copy mode to copy selection to clipboard
 # bind -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
@@ -15,7 +16,12 @@ bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 # bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 #
 # tmux 2.4
-bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
-unbind -T copy-mode-vi Enter
-bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+# bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'reattach-to-user-namespace pbcopy'
+# unbind -T copy-mode-vi Enter
+# bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
+# tmux 2.6
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
