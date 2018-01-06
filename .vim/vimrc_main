@@ -240,6 +240,7 @@ map <Leader>d :NERDTreeToggle<CR>
 
 let NERDTreeShowLineNumbers=1
 let NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_open_on_console_startup=1
 
@@ -265,6 +266,10 @@ let g:snipMate.snippet_version = 1
 
 " ---- markdown configs
 let g:vim_markdown_folding_disabled = 1
+
+" ---- vim-rooter configs
+let g:rooter_targets = '/,*'
+
 " ---- vimux configs
 
 let VimuxHeight = "33" "this is percentage
