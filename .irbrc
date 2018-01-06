@@ -1,15 +1,6 @@
 # load libraries
 require 'rubygems'
 
-# start wirble (with color)
-begin
-  require 'wirble'
-  Wirble.init(:skip_prompt => true, :skip_history => true)
-  Wirble.colorize
-rescue LoadError
-#  puts "Wirble was not loaded - no color support"
-end
-
 require 'irb/completion'
 require 'irb/ext/save-history'
 
@@ -17,12 +8,11 @@ ARGV.concat [ "--readline",
               "--prompt-mode",
               "simple" ]
 
+# 25 entries in the list
+IRB.conf[:SAVE_HISTORY] = 25
 
-              # 25 entries in the list
-              IRB.conf[:SAVE_HISTORY] = 25
-
-              # Store results in home directory with specified file name
-              IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
+# Store results in home directory with specified file name
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
 
 def history(how_many = 50)
   history_size = Readline::HISTORY.size
@@ -38,7 +28,7 @@ def history(how_many = 50)
     end_index = how_many
   else
     end_index = history_size - 1 # -1 to adjust for array offset
-    start_index = end_index - how_many 
+    start_index = end_index - how_many
   end
 
   start_index.upto(end_index) {|i| print_line i}
@@ -50,7 +40,8 @@ alias :h  :history
 def history_do(lines = (Readline::HISTORY.size - 2))
   irb_eval lines
   nil
-end 
+end
+
 alias :h! :history_do
 
 def history_write(filename, lines)
@@ -62,6 +53,7 @@ def history_write(filename, lines)
 
   file.close
 end
+
 alias :hw :history_write
 
 private
@@ -97,19 +89,4 @@ def irb_eval(lines)
 end
 
 
-script_console_running = ENV.include?('RAILS_ENV') &&
-                         IRB.conf[:LOAD_MODULES] &&
-                         IRB.conf[:LOAD_MODULES].include?('console_with_helpers')
-rails_running = ENV.include?('RAILS_ENV') &&
-                !(IRB.conf[:LOAD_MODULES] &&
-                IRB.conf[:LOAD_MODULES].include?('console_with_helpers'))
-irb_standalone_running = !script_console_running && !rails_running
-if script_console_running
-  require 'logger'
-
-  Object.const_set(:RAILS_DEFAULT_LOGGER, Logger.new(STDOUT))
-
-end
-  
-  ActiveRecord::Base.logger = Logger.new STDOUT rescue nil
 
