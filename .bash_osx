@@ -1,7 +1,7 @@
-echo "loading osx specific config"
+# echo "loading osx specific config"
 
 # Color support for LS
-#
+
 export CLICOLOR=1
 #
 #  Fields:
@@ -39,7 +39,6 @@ export CLICOLOR=1
 #
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
-
 # trash:        Moves a file to the MacOS trash
 trash () { command mv "$@" ~/.Trash ; }
 
@@ -52,17 +51,12 @@ export ARCHFLAGS="-arch x86_64"
 # make sure Java8 is the defailt or some command line tools run slow.
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-# Eclipse?
-# export ECLIPSE_HOME="/Applications/Eclipse"
-
-# wat
-alias cleartermlogs='sudo rm -rf /private/var/log/asl/*.asl'
-
 # PG aliases
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
-# gtimeout is from coreutils - but they're all prefixed with g. I want the one that works like ubuntu :)
+# gtimeout is from coreutils - but they're all prefixed with g.
+# I want the one that works like ubuntu :)
 alias timeout='gtimeout'
 
 # open simulator
@@ -71,11 +65,11 @@ alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iP
 # clean out the "open with" database
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
-# Brew and homedir/bin in path first
-export PATH="/usr/local/bin:~/bin:$PATH"
-
 #node's bin in path
 export PATH="/usr/local/share/npm/bin:$PATH"
+
+# Brew and homedir/bin in path first
+export PATH="/usr/local/bin:~/bin:$PATH"
 
 #heroku
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -84,15 +78,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export GOPATH=$HOME/go
 
-# android sdk tools
-export PATH="$PATH:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools"
-
 # Firefox profile
 alias ffclean="/Applications/Firefox.app/Contents/MacOS/firefox-bin -P"
 
 # iTerm2
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 
 #   cdf:  'Cd's to frontmost window of MacOS Finder
 #   ------------------------------------------------------

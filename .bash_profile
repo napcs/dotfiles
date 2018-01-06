@@ -5,7 +5,13 @@ fi
 
 # My bash_profile settings.
 export EDITOR=vim
+
+# ignore fg
 export HISTIGNORE="fg*"
+
+# no duplicates
+export HISTCONTROL=ignoreboth
+
 
 export VISUAL=vim
 
@@ -46,7 +52,11 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 
 mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir and jumps inside
 
+# simple web server for current dir
 alias s="python -m SimpleHTTPServer"
+
+# history
+alias mostused="history | awk '{print $2;}' | sort | uniq -c | sort -nr | head"
 
 # Erlang/iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -96,9 +106,9 @@ else
 fi
 
 # ask for tmux but only if we're not in tmux
-if [[ ! $TERM =~ screen ]]; then
+# if [[ ! $TERM =~ screen ]]; then
   # list tmux sessions
-  tmux list-sessions 2> /dev/null
+  # tmux list-sessions 2> /dev/null
 
   #echo "want tmux?"
   #read answer
@@ -106,6 +116,5 @@ if [[ ! $TERM =~ screen ]]; then
     #tmux && exit 0
   #fi
 
-fi
-
+# fi
 
