@@ -41,6 +41,8 @@ Bundle 'godlygeek/tabular'
 " HTML support
 Bundle 'tpope/vim-ragtag'
 
+Plugin 'mattn/emmet-vim'
+
 " Markdown
 " Relies on tabular, which must be loaded first
 Bundle 'plasticboy/vim-markdown'
@@ -57,7 +59,7 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'mileszs/ack.vim'
 
 " Sets project root to wherever the root of the repository is.
-Bundle 'airblade/vim-rooter'
+" Bundle 'airblade/vim-rooter'
 
 " My custom color scheme
 Bundle 'napcs/vim-mycontrast'
@@ -86,7 +88,7 @@ Bundle 'mklabs/grunt.vim'
 Bundle 'scrooloose/syntastic'
 
 " Tab completion for variables and other things
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 
 "Easy navigation with ,,
 Bundle 'Lokaltog/vim-easymotion'
@@ -131,6 +133,11 @@ Plugin 'chrisbra/unicode.vim'
 " vimwiki
 Plugin 'vimwiki/vimwiki'
 
+" Vue
+Plugin 'posva/vim-vue'
+
+" crystal
+Plugin 'rhysd/vim-crystal'
 
 try
   source $VIMHOME/vundle_private
