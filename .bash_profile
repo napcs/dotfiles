@@ -68,10 +68,27 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 source ~/.git_completion.bash
 
 # Prompt
-export CUSTOM_PROMPT='\[\033[38;5;10m\]\W\[\033[38;5;15m\]$(__git_ps1 " (%s)")\[\033[38;5;14m\] \$\[$(tput sgr0)\] '
+#export CUSTOM_PROMPT='\[\033[38;5;10m\]\W\[\033[38;5;15m\]$(__git_ps1 " (%s)")\[\033[38;5;14m\] \$\[$(tput sgr0)\] '
 export UNCOLORED_PROMPT='\W$(__git_ps1 " (%s)") \$ '
 
-PS1=$CUSTOM_PROMPT
+PS1=$UNCOLORED_PROMPT
+
+
+# Linux configuration
+if [ -f ~/.bash_linux ]; then
+   source ~/.bash_linux
+fi
+
+# Special OS specific stuff I need
+if [ -f ~/.bash_osx ]; then
+  source ~/.bash_osx
+fi
+
+# My private enviroment settings I don't share.
+if [ -f ~/.bash_private ]; then
+   source ~/.bash_private
+fi
+
 
 # RVM
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
@@ -81,23 +98,6 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
   PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
 
-# Linux configuration
-if [ -f ~/.bash_linux ]; then
-   source ~/.bash_linux
-fi
-
-# Special OS specific stuff I need
-if [ -f ~/.bash_osx ]; then
-   source ~/.bash_osx
-fi
-
-# My private enviroment settings I don't share.
-if [ -f ~/.bash_private ]; then
-   source ~/.bash_private
-fi
-
-
-
 # direnv
 if hash direnv 2>/dev/null; then
   eval "$(direnv hook bash)"
@@ -105,16 +105,16 @@ else
   echo "direnv not installed."
 fi
 
+
 # ask for tmux but only if we're not in tmux
-# if [[ ! $TERM =~ screen ]]; then
+# if [[ -z "$TMUX" ]]; then
   # list tmux sessions
   # tmux list-sessions 2> /dev/null
 
   #echo "want tmux?"
   #read answer
   #if [[ $answer == "y" ]]; then
-    #tmux && exit 0
+    # tmux new-session -A -s "$USER" && exit 0
   #fi
 
 # fi
-
