@@ -81,8 +81,6 @@ export GOPATH=$HOME/go
 # Firefox profile
 alias ffclean="/Applications/Firefox.app/Contents/MacOS/firefox-bin -P"
 
-# iTerm2
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 #   cdf:  'Cd's to frontmost window of MacOS Finder
 #   ------------------------------------------------------
