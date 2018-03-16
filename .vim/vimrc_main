@@ -63,6 +63,7 @@ set exrc                                 "enable per-directory .vimrc files
 set secure                               "disable unsafe stuff from local .vimrc files
 
 set laststatus=2                         "always show status line
+set lazyredraw                           "Vim 8 syntax highlighting on macOS is slow.
 
 " Set up the backup directories to a central place.
 set backupdir=$HOME/tmp/backup//
@@ -243,6 +244,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_open_on_console_startup=1
+let g:NERDTreeWinPos = "left"
 
 " ---- CTRL-P configuration
 
