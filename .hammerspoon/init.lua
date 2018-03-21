@@ -185,13 +185,29 @@ hs.hotkey.bind({"cmd"}, "G", hs.grid.show)
 -- Somewhat hackis. Just grabs the current x/y coords, presses the mouse down,
 -- triggers the keybindings to move to the next space, sleeps, and then lets
 -- the mouse up, which drops the window.
+
+
+
+-- move a window to an adjacent Space
 function moveWindowOneSpace(direction)
    local mouseOrigin = hs.mouse.getAbsolutePosition()
    local win = hs.window.focusedWindow()
-   local clickPoint = win:zoomButtonRect()
-
-   clickPoint.x = clickPoint.x + clickPoint.w + 5
+   clickPoint.x = clickPoint.x + (clickPoint.w + 5)
    clickPoint.y = clickPoint.y + (clickPoint.h / 2)
+
+    local visibleWindows = hs.window.orderedWindows()
+    for i, window in ipairs(visibleWindows) do
+      if window:application():title() == "Google Chrome" then
+        clickPoint.x = clickPoint.x + (clickPoint.w + 5)
+        clickPoint.y = clickPoint.y + (clickPoint.h / 2)
+      else
+        window:focus()
+        win = window
+        break
+      end
+    end
+
+
 
    local mouseClickEvent = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseDown, clickPoint)
    mouseClickEvent:post()
@@ -209,7 +225,7 @@ function moveWindowOneSpace(direction)
    mouseReleaseEvent:post()
    hs.timer.usleep(150000)
 
-   hs.mouse.setAbsolutePosition(mouseOrigin)
+   mouse.setAbsolutePosition(mouseOrigin)
 end
 
 
