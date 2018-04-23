@@ -5,6 +5,7 @@ fi
 
 # My bash_profile settings.
 export EDITOR=vim
+export VISUAL=vim
 
 # ignore fg
 export HISTIGNORE="fg*"
@@ -13,7 +14,6 @@ export HISTIGNORE="fg*"
 export HISTCONTROL=ignoreboth
 
 
-export VISUAL=vim
 
 # use vim to edit commands instead of emacs
 # Uncomment if you want that.
@@ -22,6 +22,8 @@ export VISUAL=vim
 # bind c-f to bring back c-z app instead of fg
 bind '"\C-f": "fg %-\n"'
 
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # aliases
 
 alias sudo='sudo ' # allow aliases to work with sudo
@@ -37,10 +39,11 @@ alias tnu='unset TMPDIR && tmux new-session -s'               # tmux new but uns
 alias tau='unset TMPDIR && tmux attach -t'                    # tmux attach but unset tmpdir for sockets
 alias psr='ps -ef | grep'                                     # show long listing of processes
 alias ep='vim ~/.bash_profile'                                # edit bash_profile
+alias epp='vim ~/.bash_private'                                # edit private file
 alias ev='vim ~/.vim/vimrc_main'                              # edit shared vim conf
 alias evv='vim ~/.vim/vundle'                                 # edit vim plugins
 alias evp='vim ~/.vim/vimrc_private'                          # edit private vim settings
-alias rp='. ~/.bash_profile'                                  # edit bash profile
+alias rp='. ~/.bash_profile'                                  # reload bash profile
 alias et='vim ~/.tmux.conf'                                   # edit tmux conf
 alias md='mkdir -p'                                           # create folders with child folders
 alias pastebin='curl -F c=@- https://ptpb.pw/'                # create a pastebin
@@ -53,7 +56,7 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir and jumps inside
 
 # simple web server for current dir
-alias s="python -m SimpleHTTPServer"
+alias server="python -m SimpleHTTPServer"
 
 # history
 alias mostused="history | awk '{print $2;}' | sort | uniq -c | sort -nr | head"
