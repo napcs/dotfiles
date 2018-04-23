@@ -1,5 +1,7 @@
 # echo "loading osx specific config"
 
+alias epo='vim ~/.bash_osx'                                # edit this file
+
 # Color support for LS
 
 export CLICOLOR=1
@@ -113,3 +115,4 @@ EOT
         echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
         echo
     }
+
