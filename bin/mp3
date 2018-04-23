@@ -1,2 +1,2 @@
 #!/bin/sh
-lame $1.wav $1.mp3 -V2 --vbr-new -q0 --lowpass 19.7
+lame "$1.wav" "$1.mp3" -V2 --vbr-new -q0 --lowpass 19.7
