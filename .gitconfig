@@ -10,16 +10,20 @@
   fit = !git reset --hard HEAD && git clean -f -d
   cb = !git checkout -b
   topcommits = !git shortlog -sne
-  commitsby = !git log -p --author=
+  statsby = "!f() { git log --pretty=tformat: --numstat --author=$1; }; f"
+  commitsby = "!f() { git log -p --author=$1; }; f"
 
 [core]
 	autocrlf = input
 	excludesfile = /Users/brianhogan/.gitignore
 [push]
 	default = simple
-[transfer]
-        fsckobjects = true
-[fetch]
-        fsckobjects = true
-[receive]
-        fsckObjects = true
+
+;[transfer]
+        ;fsckobjects = true
+;[fetch]
+        ;fsckobjects = true
+;[receive]
+        ;fsckObjects = true
+[credential]
+	helper = osxkeychain
