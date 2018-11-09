@@ -88,7 +88,7 @@ Bundle 'mklabs/grunt.vim'
 Bundle 'scrooloose/syntastic'
 
 " Tab completion for variables and other things
-" Bundle 'ervandew/supertab'
+Bundle 'ervandew/supertab'
 
 "Easy navigation with ,,
 Bundle 'Lokaltog/vim-easymotion'
