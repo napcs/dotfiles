@@ -70,14 +70,14 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 #node's bin in path
 export PATH="/usr/local/share/npm/bin:$PATH"
 
-# Brew and homedir/bin in path first
-export PATH="/usr/local/bin:~/bin:$PATH"
+# homedir/bin in path first
+export PATH="$HOME/bin:$PATH"
 
 #heroku
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$PATH:/usr/local/heroku/bin"
 
 #go
-export PATH="$HOME/go/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin"
 export GOPATH=$HOME/go
 
 # Firefox profile
