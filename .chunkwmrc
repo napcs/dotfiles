@@ -47,7 +47,7 @@ chunkc set window_float_next             0
 chunkc set window_float_center           1
 chunkc set window_region_locked          1
 
-chunkc set mouse_modifier                fn
+chunkc set mouse_move_window \"fn 1\"
 
 chunkc set preselect_border_color        0xffd75f5f
 chunkc set preselect_border_width        5
