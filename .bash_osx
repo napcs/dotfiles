@@ -116,3 +116,26 @@ EOT
         echo
     }
 
+term_720p() {
+  osascript -e 'tell application "iTerm2" to set the bounds of the front window to {24, 24, 1280, 720}'
+}
+
+term_1080p() {
+  osascript -e 'tell application "iTerm2" to set the bounds of the front window to {24, 24, 1920, 1080}'
+}
+
+# notify me when stuff is done
+# use  with ;
+# some_command; notifyMe
+notifyMe() {
+  if [ $? -eq 0 ]; then
+    osascript -e 'display notification "The command worked" with title "Success"'
+  else
+    osascript -e 'display notification "The command failed" with title "Failed"'
+  fi
+}
+
+# aliases for starting/stopping chunkwm
+alias chunkoff='brew services stop chunkwm'
+alias chunkon='brew services start chunkwm'
+alias chunkrestart='brew services restart chunkwm'
