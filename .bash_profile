@@ -103,7 +103,7 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
   source $HOME/.rvm/scripts/rvm
 
   # add Ruby version to prompt
-#  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
+  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
 
 # direnv
@@ -143,6 +143,3 @@ export LS_COLORS="di=1;34;1:ln=35;1:so=32;1:pi=33;1:ex=31;1:bd=34;46:cd=34;43:su
   #if [[ $answer == "y" ]]; then
     # tmux new-session -A -s "$USER" && exit 0
   #fi
-
-
-
