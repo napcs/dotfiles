@@ -1,17 +1,17 @@
 # load .bashrc
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
-fi
+#if [ -f ~/.bashrc ]; then
+   #source ~/.bashrc
+#fi
 
 # My bash_profile settings.
 export EDITOR=vim
 export VISUAL=vim
 
 # ignore fg
-export HISTIGNORE="fg*"
+HISTIGNORE="fg*"
 
-# no duplicates
-export HISTCONTROL=ignoreboth
+# no duplicates or space-prefixed commands
+HISTCONTROL=ignoreboth
 
 
 
@@ -30,7 +30,7 @@ alias sudo='sudo ' # allow aliases to work with sudo
 
 alias path='echo -e ${PATH//:/\\n}'                           # display path
 alias ll="ls -alh"                                            # show long list
-alias irb='irb --readline -r irb/completion -rubygems'        # Make sure irb has rubygems and completion
+alias irb='irb --readline -r irb/completion'                  # Make sure irb has readline and completion
 alias tn='tmux new-session -s'                                # tmux new session
 alias ta='tmux attach -t'                                     # tmux attach
 alias tl='tmux ls'                                            # list
@@ -50,16 +50,18 @@ alias pastebin='curl -F c=@- https://ptpb.pw/'                # create a pastebi
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall" # update vim bundles
 alias myip='curl icanhazip.com'                               # myip: Public facing IP Address
 
+mostused() {
+  history | awk '{c[$2]++}END{for(i in c){print c[i] " " i}}' | sort -rn | head;
+}
+
 # recursive directory listing
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+# alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
 mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir and jumps inside
 
 # simple web server for current dir
 alias server="python -m SimpleHTTPServer"
 
-# history
-alias mostused="history | awk '{print $2;}' | sort | uniq -c | sort -nr | head"
 
 # Erlang/iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -71,10 +73,13 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 source ~/.git_completion.bash
 
 # Prompt
-#export CUSTOM_PROMPT='\[\033[38;5;10m\]\W\[\033[38;5;15m\]$(__git_ps1 " (%s)")\[\033[38;5;14m\] \$\[$(tput sgr0)\] '
-export UNCOLORED_PROMPT='\W$(__git_ps1 " (%s)") \$ '
+DIRCOLOR="\[$(tput setaf 6)\]"
+PROMPTCOLOR="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+COLORED_PROMPT="\u@\h:${DIRCOLOR}\W\$(__git_ps1) ${PROMPTCOLOR}\$${RESET} "
+UNCOLORED_PROMPT='\u@\h:\W$(__git_ps1 " (%s)") \$ '
 
-PS1=$UNCOLORED_PROMPT
+PS1=$COLORED_PROMPT
 
 
 # Linux configuration
@@ -98,7 +103,7 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
   source $HOME/.rvm/scripts/rvm
 
   # add Ruby version to prompt
-  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
+#  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
 
 # direnv
@@ -108,6 +113,25 @@ else
   echo "direnv not installed."
 fi
 
+fd() {
+  DIR=`find * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
+    && cd "$DIR"
+}
+
+dock() {
+  eval $(docker-machine env $1)
+}
+
+dock_ip() {
+  docker-machine ip $1
+}
+
+
+undock() {
+  eval $(docker-machine env -u)
+}
+
+export LS_COLORS="di=1;34;1:ln=35;1:so=32;1:pi=33;1:ex=31;1:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
 # ask for tmux but only if we're not in tmux
 # if [[ -z "$TMUX" ]]; then
@@ -120,4 +144,5 @@ fi
     # tmux new-session -A -s "$USER" && exit 0
   #fi
 
-# fi
+
+
