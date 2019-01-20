@@ -9,3 +9,7 @@
 .config/ranger/history
 .config/ranger/bookmarks
 .config/ranger/tagged
+.config/doctl
+
+.config/configstore/
+.config/htop
