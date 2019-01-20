@@ -1,6 +1,8 @@
 set completion-ignore-case Off
 set bell-style none
 
+"\e\"": "\C-a\ef\ef\eb\"\C-e\""
+
 # set editing-mode vi
 $if mode=vi
   set keymap vi-command
