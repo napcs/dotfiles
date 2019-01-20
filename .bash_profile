@@ -131,7 +131,6 @@ undock() {
   eval $(docker-machine env -u)
 }
 
-export LS_COLORS="di=1;34;1:ln=35;1:so=32;1:pi=33;1:ex=31;1:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
 # ask for tmux but only if we're not in tmux
 # if [[ -z "$TMUX" ]]; then
