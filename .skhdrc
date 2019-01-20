@@ -1,5 +1,6 @@
 # terminal - like Linux
-ctrl + alt - t : open -na /Applications/Iterm.app
+# ctrl + alt - t : open -na /Applications/Utilities/Terminal.app
+ctrl + alt - r : brew services restart chunkwm
 
 # enter fullscreen mode for the focused container
 alt - f : chunkc tiling::window --toggle fullscreen
