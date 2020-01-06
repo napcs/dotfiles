@@ -44,7 +44,7 @@ set backspace=indent,eol,start           "allow backspacing over everything in i
 "set cindent                              "recommended seting for automatic C-style indentation
 set autoindent                           "automatic indentation in non-C files
 "set copyindent                           "copy the previous indentation on autoindenting
-"set smartindent
+set smartindent
 
 set noerrorbells                         "don't make noise
 set wildmenu                             "make tab completion act more like bash
@@ -221,6 +221,26 @@ map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 nmap <leader>msp :mkspell! ~/.vim/spell/en.utf-8.add<CR><CR>
 
+" ---- Syntax inspector via vimcasts
+
+" Show syntax highlighting groups for word under cursor with CtrlShiftR
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+nmap <C-S-R> :call <SID>SynStack()<CR>
+
+" fix syntax highlighting in Ruby by using the older regex engine for Ruby
+" files
+autocmd FileType ruby setlocal re=1
+
+" ----------- Digraphs -------
+
+silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
+
 " ----------- Plugin Configuration ----------------------------------
 
 " ---- NERDTree  configuration
@@ -280,21 +300,15 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 " ----------- Mustache / Handlebars ---------------------------------
 let g:mustache_abbreviations = 1
 
-" ----------- Syntastic  ---------------------------------
-let g:syntastic_mode_map = { 'mode': 'active' }
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_cucumber_args="--profile syntastic"
-let g:syntastic_javascript_checkers = ['']
-let g:syntastic_html_checkers = ['']
+" ----------- ALE configs ---------------------------------------
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
+let g:ale_list_vertical = 0
+let g:ale_lint_on_enter = 1
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 " ----------- Dispatch configs ---------------------------------------
 
 autocmd FileType coffee let b:dispatch = 'coffee -c %'
@@ -345,9 +359,6 @@ autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 
 
-" ----------- Digraphs -------
-
-silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
 
 " ----------- Private Configuration ----------------------------------
 
