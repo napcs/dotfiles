@@ -1,43 +1,60 @@
 # terminal - like Linux
 # ctrl + alt - t : open -na /Applications/Utilities/Terminal.app
-ctrl + alt - r : brew services restart chunkwm
+# ctrl + alt - r : brew services restart chunkwm
+ctrl + alt - r : brew services restart yabai
 
 # enter fullscreen mode for the focused container
-alt - f : chunkc tiling::window --toggle fullscreen
-ctrl + alt + cmd - m : chunkc tiling::window --toggle fullscreen
+# alt - f : chunkc tiling::window --toggle fullscreen
+# ctrl + alt + cmd - m : chunkc tiling::window --toggle fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
+ctrl + alt + cmd - m : yabai -m window --toggle zoom-fullscreen
 
 # change focus between tiling / floating windows
-shift + alt - space : chunkc tiling::window --toggle float
+# shift + alt - space : chunkc tiling::window --toggle float
+shift + alt - space : yabai -m window --toggle float
 
 # change layout of desktop
-alt - e : chunkc tiling::desktop --layout bsp
-alt - s : chunkc tiling::desktop --layout monocle
+# alt - e : chunkc tiling::desktop --layout bsp
+# alt - s : chunkc tiling::desktop --layout monocle
+alt - e : yabai -m space --layout bsp
+alt - s : yabai -m space --layout float
 
 # kill focused window
 shift + alt - q : chunkc tiling::window --close
 
 # change focus
-alt - h : chunkc tiling::window --focus west
-alt - j : chunkc tiling::window --focus south
-alt - k : chunkc tiling::window --focus north
-alt - l : chunkc tiling::window --focus east
+# alt - h : chunkc tiling::window --focus west
+# alt - j : chunkc tiling::window --focus south
+# alt - k : chunkc tiling::window --focus north
+# alt - l : chunkc tiling::window --focus east
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
 
-alt - p : chunkc tiling::window --focus prev
-alt - n : chunkc tiling::window --focus next
+alt - p : yabai -m window --focus prev
+alt - n : yabai -m window --focus next
 
 # move focused window
-shift + alt - h : chunkc tiling::window --warp west
-shift + alt - j : chunkc tiling::window --warp south
-shift + alt - k : chunkc tiling::window --warp north
-shift + alt - l : chunkc tiling::window --warp east
+# shift + alt - h : chunkc tiling::window --warp west
+# shift + alt - j : chunkc tiling::window --warp south
+# shift + alt - k : chunkc tiling::window --warp north
+# shift + alt - l : chunkc tiling::window --warp east
+
+alt - up : yabai -m window --warp north
+alt - down : yabai -m window --warp south
+alt - left : yabai -m window --warp west
+alt - right : yabai -m window --warp east
 
 # alt warp
-cmd + ctrl + alt - left : chunkc tiling::window --warp west
-cmd + ctrl + alt - down : chunkc tiling::window --warp south
-cmd + ctrl + alt - up : chunkc tiling::window --warp north
-cmd + ctrl + alt - right : chunkc tiling::window --warp east
+# cmd + ctrl + alt - left : chunkc tiling::window --warp west
+# cmd + ctrl + alt - down : chunkc tiling::window --warp south
+# cmd + ctrl + alt - up : chunkc tiling::window --warp north
+# cmd + ctrl + alt - right : chunkc tiling::window --warp east
 
-alt - r : chunkc tiling::desktop --rotate 90
+# alt - r : chunkc tiling::desktop --rotate 90
+alt - r : yabai -m space --rotate 90
+alt - w : yabai -m space --balance
 
 # move focused container to workspace
 shift + alt - m : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
@@ -49,3 +66,6 @@ shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
 shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
 shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
 shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+
+cmd + ctrl + alt - right : yabai -m window --space next; yabai -m space --focus next
+cmd + ctrl + alt - left : yabai -m window --space prev; yabai -m space --focus prev
