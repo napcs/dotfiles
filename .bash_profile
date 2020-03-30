@@ -49,6 +49,7 @@ alias md='mkdir -p'                                           # create folders w
 alias pastebin='curl -F c=@- https://ptpb.pw/'                # create a pastebin
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall" # update vim bundles
 alias myip='curl icanhazip.com'                               # myip: Public facing IP Address
+alias devtree="tree -aC -I '.git|node_modules|bower_components' --dirsfirst | less -FRX"
 
 mostused() {
   history | awk '{c[$2]++}END{for(i in c){print c[i] " " i}}' | sort -rn | head;
