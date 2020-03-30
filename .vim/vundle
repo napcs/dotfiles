@@ -151,6 +151,8 @@ Plugin 'kevinhui/vim-docker-tools'
 " vimroom
 Plugin 'mikewest/vimroom'
 
+Plugin 'davidbeckingsale/writegood.vim'
+
 try
   source $VIMHOME/vundle_private
 catch
