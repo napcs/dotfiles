@@ -231,7 +231,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-nmap <C-S-R> :call <SID>SynStack()<CR>
+" nmap <C-S-R> :call <SID>SynStack()<CR>
 
 " fix syntax highlighting in Ruby by using the older regex engine for Ruby
 " files
@@ -240,6 +240,14 @@ autocmd FileType ruby setlocal re=1
 " ----------- Digraphs -------
 
 silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
+
+" ----------- quickfix -------
+
+" ,q to toggle quickfix window (where you have stuff like GitGrep)
+" ,oq to open it back up (rare)
+nmap <silent> ,cq :cclose<CR>
+nmap <silent> ,co :copen<CR>
+
 
 " ----------- Plugin Configuration ----------------------------------
 
@@ -255,8 +263,14 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:NERDTreeWinPos = "left"
 
-" ---- CTRL-P configuration
+" ---- Commenter ----
+" For nerdcommenter, add one space after comment char
+let NERDSpaceDelims=1
 
+" ---- Ragtag -----
+let g:ragtag_global_maps = 1
+
+" ---- CTRL-P configuration
 " Open fuzzy finder with leader,f
 map <Leader>f :CtrlP<CR>
 
@@ -304,10 +318,19 @@ let g:mustache_abbreviations = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_vertical = 0
 let g:ale_lint_on_enter = 1
+
+" Map keys to navigate between lines with errors and warnings.
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+
+" ----------- vue configs -------------------
+" limit preprocessors to speed up vim.
+let g:vue_pre_processors = ["scss"]
+
 
 " ----------- Dispatch configs ---------------------------------------
 
