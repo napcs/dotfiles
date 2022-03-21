@@ -7,7 +7,7 @@ ctrl + alt - r : brew services restart yabai
 # alt - f : chunkc tiling::window --toggle fullscreen
 # ctrl + alt + cmd - m : chunkc tiling::window --toggle fullscreen
 alt - f : yabai -m window --toggle zoom-fullscreen
-ctrl + alt + cmd - m : yabai -m window --toggle zoom-fullscreen
+cmd + ctrl + alt - m : yabai -m window --toggle zoom-fullscreen
 
 # change focus between tiling / floating windows
 # shift + alt - space : chunkc tiling::window --toggle float
@@ -69,3 +69,5 @@ shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
 
 cmd + ctrl + alt - right : yabai -m window --space next; yabai -m space --focus next
 cmd + ctrl + alt - left : yabai -m window --space prev; yabai -m space --focus prev
+
+

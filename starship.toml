@@ -1,0 +1,42 @@
+# Use custom format
+
+format = """
+$username$hostname$directory$vagrant$terraform$elixir$ruby$nodejs$docker_context$git_branch$cmd_duration$character
+"""
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+command_timeout = 2000
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+[character]
+success_symbol = "[❯](bold green)"
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = 4
+truncation_symbol = ""
+
+[docker_context]
+format = " via [🐋 $context](blue bold) "
+
+[ruby]
+format = " ruby [$version](red bold) "
+
+[nodejs]
+format = " node [$version](green bold) "
+
+[hostname]
+ssh_only = false
+format = "@[$hostname](green bold):"
+
+[username]
+show_always = true
+format = "[$user](yellow bold)"
+
+[directory]
+format = "[$path](cyan bold) "
+truncate_to_repo = false

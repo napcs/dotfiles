@@ -20,7 +20,7 @@ HISTCONTROL=ignoreboth
 # set -o vi
 
 # bind c-f to bring back c-z app instead of fg
-bind '"\C-f": "fg %-\n"'
+# bind '"\C-f": "fg %-\n"'
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -73,14 +73,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # GIT
 source ~/.git_completion.bash
 
-# Prompt
-DIRCOLOR="\[$(tput setaf 6)\]"
-PROMPTCOLOR="\[$(tput setaf 2)\]"
-RESET="\[$(tput sgr0)\]"
-COLORED_PROMPT="\u@\h:${DIRCOLOR}\W\$(__git_ps1) ${PROMPTCOLOR}\$${RESET} "
-UNCOLORED_PROMPT='\u@\h:\W$(__git_ps1 " (%s)") \$ '
-
-PS1=$COLORED_PROMPT
 
 
 # Linux configuration
@@ -103,8 +95,6 @@ fi
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
   source $HOME/.rvm/scripts/rvm
 
-  # add Ruby version to prompt
-  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
 
 # direnv
@@ -132,6 +122,15 @@ undock() {
   eval $(docker-machine env -u)
 }
 
+catln() {
+  num=$1
+  input=$2
+  if [ -z "$input" ]; then
+    sed -n ${num}p </dev/stdin
+  else
+    sed -n ${num}p $input
+  fi
+}
 
 # ask for tmux but only if we're not in tmux
 # if [[ -z "$TMUX" ]]; then
@@ -143,3 +142,29 @@ undock() {
   #if [[ $answer == "y" ]]; then
     # tmux new-session -A -s "$USER" && exit 0
   #fi
+
+docker_cleanup() {
+  docker container prune -f
+  docker rmi $(docker images -f "dangling=true" -q)
+}
+
+if command -v bat &> /dev/null; then
+  alias cat=bat
+fi
+
+# Prompt setup
+# starship
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+else
+  DIRCOLOR="\[$(tput setaf 6)\]"
+  PROMPTCOLOR="\[$(tput setaf 2)\]"
+  RESET="\[$(tput sgr0)\]"
+  COLORED_PROMPT="\u@\h:${DIRCOLOR}\W\$(__git_ps1) ${PROMPTCOLOR}\$${RESET} "
+  UNCOLORED_PROMPT='\u@\h:\W$(__git_ps1 " (%s)") \$ '
+
+  PS1=$COLORED_PROMPT
+
+  # add Ruby version to prompt
+  PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
+fi

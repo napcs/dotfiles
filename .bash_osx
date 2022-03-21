@@ -1,4 +1,4 @@
-# echo "loading osx specific config"
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 alias epo='vim ~/.bash_osx'                                # edit this file
 
@@ -121,21 +121,37 @@ term_720p() {
 }
 
 term_1080p() {
-  osascript -e 'tell application "iTerm2" to set the bounds of the front window to {24, 24, 1920, 1080}'
+  osascript -e 'tell application "iTerm2" to set the bounds of the front window to {0, 0, 1922, 1104}'
 }
 
 # notify me when stuff is done
 # use  with ;
 # some_command; notifyMe
 notifyMe() {
-  if [ $? -eq 0 ]; then
+  RESULT_CODE=$?
+  if [ $RESULT_CODE -eq 0 ]; then
     osascript -e 'display notification "The command worked" with title "Success"'
   else
     osascript -e 'display notification "The command failed" with title "Failed"'
   fi
 }
 
-# aliases for starting/stopping chunkwm
-alias chunkoff='brew services stop chunkwm'
-alias chunkon='brew services start chunkwm'
-alias chunkrestart='brew services restart chunkwm'
+
+# aliases for starting/stopping yabai
+alias yabaioff='brew services stop yabai'
+alias yabaion='brew services start yabai'
+alias yabairestart='brew services restart yabai'
+
+# load gnu versions of utilities
+export PATH="/usr/local/opt/coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+
+# quick command to see what's blocking keyboard input.
+blocking() {
+  ioreg -l -w 0 \
+  | perl -nle 'print $1 if /"kCGSSessionSecureInputPID"=(\d+)/' \
+  | uniq \
+  | xargs -I{} ps -p {} -o comm=
+}
+

@@ -136,6 +136,9 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=db/dumps --exclude=tmp --excl
 imap jj <Esc>:w<CR>
 
 
+" visual indent with reselct
+vnoremap <Right> >gv
+vnoremap <Left> <gv
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
@@ -172,6 +175,9 @@ endfunction
 " pastetoggle just in case
 set pastetoggle=<F2>
 
+" html
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 " Navigate tabs
 map <leader>1 :tabp<CR>
@@ -289,6 +295,12 @@ map <Leader>a :Ack
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
 
+" ---- wiki
+let g:vimwiki_global_ext = 0
+let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 " ---- markdown configs
 let g:vim_markdown_folding_disabled = 1
 
@@ -322,6 +334,8 @@ let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_vertical = 0
 let g:ale_lint_on_enter = 1
+" let g:ale_completion_enabled = 1
+" set omnifunc=ale#completion#OmniFunc
 
 " Map keys to navigate between lines with errors and warnings.
 nnoremap <leader>an :ALENextWrap<cr>
@@ -360,7 +374,6 @@ else
 endif
 
 autocmd FileType ruby nmap <Leader>g :!"$CLEAR_COMMAND"; ruby "%"<cr>
-autocmd FileType go  nmap <Leader>g :!"$CLEAR_COMMAND"; go run "%"<cr>
 autocmd filetype java nmap <Leader>g :!"$CLEAR_COMMAND"; javac "%" && java "%:r"<cr>
 
 if has('win32') || has ('win64')
@@ -381,7 +394,19 @@ autocmd FileType elm nmap <Leader>g :!"$CLEAR_COMMAND"; elm make "%" --output "%
 " Elixir tests should run mix
 autocmd BufEnter *_test.exs nmap <Leader>g :!"$CLEAR_COMMAND"; mix test<cr>
 
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <leader>g  <Plug>(go-run)
 
 " ----------- Private Configuration ----------------------------------
 

@@ -88,7 +88,7 @@ Bundle 'mklabs/grunt.vim'
 " Syntax checking
 "Bundle 'scrooloose/syntastic'
 
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 
 " Tab completion for variables and other things
 Bundle 'ervandew/supertab'
@@ -116,6 +116,9 @@ Bundle 'mustache/vim-mustache-handlebars'
 
 " JavaScript libraries like jquery, etc
 Bundle 'othree/javascript-libraries-syntax.vim'
+
+" better JS
+Plugin 'jelera/vim-javascript-syntax'
 
 " Strip whitespace
 Bundle 'itspriddle/vim-stripper'

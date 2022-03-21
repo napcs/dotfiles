@@ -14,26 +14,40 @@ IRB.conf[:SAVE_HISTORY] = 25
 # Store results in home directory with specified file name
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
 
-def history(how_many = 50)
-  history_size = Readline::HISTORY.size
+# history command
+def history(count = 0)
 
-  # no lines, get out of here
-  puts "No history" and return if history_size == 0
+  # Get history into an array
+  history_array = Readline::HISTORY.to_a
 
-  start_index = 0
-
-  # not enough lines, only show what we have
-  if history_size <= how_many
-    how_many  = history_size - 1
-    end_index = how_many
-  else
-    end_index = history_size - 1 # -1 to adjust for array offset
-    start_index = end_index - how_many
+  if count > 0
+    from = history_array.length - count
+    history_array = history_array[from..-1]
   end
 
-  start_index.upto(end_index) {|i| print_line i}
-  nil
+  print history_array.join("\n")
 end
+
+# def history(how_many = 50)
+  # history_size = Readline::HISTORY.size
+
+  # # no lines, get out of here
+  # puts "No history" and return if history_size == 0
+
+  # start_index = 0
+
+  # # not enough lines, only show what we have
+  # if history_size <= how_many
+    # how_many  = history_size - 1
+    # end_index = how_many
+  # else
+    # end_index = history_size - 1 # -1 to adjust for array offset
+    # start_index = end_index - how_many
+  # end
+
+  # start_index.upto(end_index) {|i| print_line i}
+  # nil
+# end
 alias :h  :history
 
 # -2 because -1 is ourself
