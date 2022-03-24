@@ -29,27 +29,27 @@ defaults write com.apple.universalaccess closeViewPanningMode -int 0
 
 
 echo "Installing software"
-brew install vim git subversion ack exuberant-ctags ranger unzip direnv
+brew install vim git subversion ack ctags ranger unzip direnv starship
 
 echo "Installing tmux"
 brew install tmux
 
 echo "installing Node.js"
-brew install node
+brew install node yarn
 
 echo "installing Ruby"
 brew install gnupg
-
-
-
 curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 \curl -sSL https://get.rvm.io | bash -s stable
-rvm install ruby-2.6
+rvm install ruby-3.0.1
+
 
 echo "installing window manager"
-brew install koekeishiya/formulae/yabai
-brew install koekeishiya/formulae/skhd
+# brew install koekeishiya/formulae/yabai
+# brew install koekeishiya/formulae/skhd
+
+brew install --cask amethyst
 
 echo "Setting up bashrc"
 ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
@@ -74,6 +74,18 @@ mkdir -p .vim/backup
 echo "set up Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
 vim +PluginInstall +qall
+
+
+
+echo "install coc"
+
+echo "Compiling"
+pushd Dropbox/dotfiles/.vim/bundle/coc.nvim
+yarn install
+popd
+
+echo "installing plugins"
+vim +'CocInstall -sync coc-html coc-css coc-tsserver coc-go' +qall
 
 echo "Returning to original destination"
 popd
