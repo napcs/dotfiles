@@ -77,6 +77,21 @@ Once that's all set I use Vundle to install the vim plugins. I made an alias to 
 $ update_vim
 ~~~
 
+To get completion with CoC working, install Node.js and Yarn.
+
+Then compile CoC:
+
+~~~
+cd ~/Dropbox/dotfiles/.vim/bundle/coc.nvim
+yarn install
+~~~
+
+Then open vim and install plugns
+
+```
+:cocinstall coc-html coc-css coc-go coc-tsserver
+```
+
 Again, I don't recommend that you clone this and use it. It's not really designed for that.
 
 ### My keybindings
