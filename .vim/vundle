@@ -156,6 +156,9 @@ Plugin 'mikewest/vimroom'
 
 Plugin 'davidbeckingsale/writegood.vim'
 
+" coc
+Plugin 'neoclide/coc.nvim'
+
 try
   source $VIMHOME/vundle_private
 catch
