@@ -1,6 +1,8 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-alias epo='vim ~/.bash_osx'                                # edit this file
+# edit this file
+alias epo='vim ~/.bash_osx'
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Color support for LS
 
@@ -48,7 +50,16 @@ trash () { command mv "$@" ~/.Trash ; }
 ql () { qlmanage -p "$*" >& /dev/null; }
 
 # Build flags
-export ARCHFLAGS="-arch x86_64"
+if [[ $(uname -p) == 'i386' ]]; then
+  export ARCHFLAGS="-arch x86_64"
+fi
+
+# homebrew
+if [[ $(uname -p) == 'arm' ]]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+else
+  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+fi
 
 # make sure Java8 is the defailt or some command line tools run slow.
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
@@ -143,9 +154,17 @@ alias yabaion='brew services start yabai'
 alias yabairestart='brew services restart yabai'
 
 # load gnu versions of utilities
-export PATH="/usr/local/opt/coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+if [[ $(uname -p) == 'arm' ]]; then
+  export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+  export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+  export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+  export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+else
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+fi
 
 # quick command to see what's blocking keyboard input.
 blocking() {
@@ -155,3 +174,4 @@ blocking() {
   | xargs -I{} ps -p {} -o comm=
 }
 
+alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
