@@ -13,9 +13,6 @@ shift + alt - space : yabai -m window --toggle float
 alt - e : yabai -m space --layout bsp
 alt - s : yabai -m space --layout float
 
-# kill focused window
-shift + alt - q : chunkc tiling::window --close
-
 # change focus
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -36,5 +33,6 @@ alt - r : yabai -m space --rotate 90
 alt - w : yabai -m space --balance
 
 # move focused container to workspace
+# may depend on SIP being disabled.
 cmd + ctrl + alt - right : yabai -m window --space next; yabai -m space --focus next
 cmd + ctrl + alt - left : yabai -m window --space prev; yabai -m space --focus prev
