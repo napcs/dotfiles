@@ -149,9 +149,9 @@ notifyMe() {
 
 
 # aliases for starting/stopping yabai
-alias yabaioff='brew services stop yabai'
-alias yabaion='brew services start yabai'
-alias yabairestart='brew services restart yabai'
+alias yabaioff='yabai --stop-service'
+alias yabaion='yabai --start-service'
+alias yabairestart='yabai --restart-service'
 
 # load gnu versions of utilities
 if [[ $(uname -p) == 'arm' ]]; then
