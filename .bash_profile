@@ -50,6 +50,7 @@ alias pastebin='curl -F c=@- https://ptpb.pw/'                # create a pastebi
 alias update_vim="vim -u ~/.vim/.vundle +BundleInstall +qall" # update vim bundles
 alias myip='curl icanhazip.com'                               # myip: Public facing IP Address
 alias devtree="tree -aC -I '.git|node_modules|bower_components' --dirsfirst | less -FRX"
+alias lm="ls -t | head -3"
 
 mostused() {
   history | awk '{c[$2]++}END{for(i in c){print c[i] " " i}}' | sort -rn | head;
@@ -61,7 +62,7 @@ mostused() {
 mcd () { mkdir -p "$1" && cd "$1"; }                          # Makes new Dir and jumps inside
 
 # simple web server for current dir
-alias server="python -m SimpleHTTPServer"
+alias server="python3 -m http.server 3000"
 
 
 # Erlang/iex history
@@ -72,8 +73,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # GIT
 source ~/.git_completion.bash
-
-
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
@@ -89,7 +88,6 @@ fi
 if [ -f ~/.bash_private ]; then
    source ~/.bash_private
 fi
-
 
 # RVM
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
@@ -109,6 +107,8 @@ fd() {
     && cd "$DIR"
 }
 
+alias cdr='cd $(git rev-parse --show-toplevel)'
+
 dock() {
   eval $(docker-machine env $1)
 }
@@ -116,7 +116,6 @@ dock() {
 dock_ip() {
   docker-machine ip $1
 }
-
 
 undock() {
   eval $(docker-machine env -u)
@@ -131,17 +130,6 @@ catln() {
     sed -n ${num}p $input
   fi
 }
-
-# ask for tmux but only if we're not in tmux
-# if [[ -z "$TMUX" ]]; then
-  # list tmux sessions
-  # tmux list-sessions 2> /dev/null
-
-  #echo "want tmux?"
-  #read answer
-  #if [[ $answer == "y" ]]; then
-    # tmux new-session -A -s "$USER" && exit 0
-  #fi
 
 docker_cleanup() {
   docker container prune -f
@@ -168,3 +156,15 @@ else
   # add Ruby version to prompt
   PS1="[\$(~/.rvm/bin/rvm-prompt v g)] $PS1"
 fi
+
+_tmux_attach() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local sessions=$(tmux list-sessions -F "#{session_name}")
+    COMPREPLY=( $(compgen -W "$sessions" -- $cur) )
+}
+
+# complete -F _tmux_attach tmux
+
+# if [[ -z "$TMUX_PANE" ]]; then
+  # tmux new-session -A -s "${USER}" && exit 0
+# fi
