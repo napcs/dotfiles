@@ -6,7 +6,7 @@ mkdir -p ~/bin
 mkdir -p ~/.config
 
 echo "xcode install"
-xcode-select install
+xcode-select --install
 
 echo "install homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -25,10 +25,8 @@ defaults write com.apple.universalaccess closeViewZoomMode -int 0
 # zoom follow the pointer
 defaults write com.apple.universalaccess closeViewPanningMode -int 0
 
-
 echo "Installing software"
 brew install vim git subversion ack ctags ranger unzip direnv starship tree fzf pandoc wget
-
 /opt/homebrew/opt/fzf/install
 
 echo "Installing tmux"
@@ -44,11 +42,9 @@ curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 \curl -sSL https://get.rvm.io | bash -s stable
 rvm install ruby-3.0.1
 
-
 echo "installing window manager"
 brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
-
 
 echo "Setting up bashrc"
 ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
@@ -60,7 +56,7 @@ ln -nfs ~/Dropbox/dotfiles/.irbrc ~/.irbrc
 ln -nfs ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
 ln -nfs ~/Dropbox/dotfiles/.git_completion.bash ~/.git_completion.bash
 ln -nfs ~/Dropbox/dotfiles/.tmux.conf ~/.tmux.conf
-ln -nfs ~/Dropbox/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
+ln -nfs ~/Dropbox/dotfiles/.tmux.osx.clipboard ~/.tmux.osx.clipboard
 ln -nfs ~/Dropbox/dotfiles/.ackrc ~/.ackrc
 ln -nfs ~/Dropbox/dotfiles/.inputrc ~/.inputrc
 ln -nfs ~/Dropbox/dotfiles/.config/jrnl ~/.config/jrnl
@@ -88,7 +84,7 @@ yarn install
 popd
 
 echo "installing plugins"
-vim +'CocInstall -sync coc-html coc-css coc-tsserver coc-go' +qall
+vim +'CocInstall -sync coc-json coc-vale coc-html coc-css coc-tsserver coc-go' +qall
 
 echo "Returning to original destination"
 popd
