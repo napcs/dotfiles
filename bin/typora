@@ -1,0 +1,2 @@
+# Loads the markdown app
+open -a "Typora.app" "$1"
