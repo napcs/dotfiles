@@ -1,2 +1,3 @@
 # Loads the markdown app
-open -a "Typora.app" "$1"
+open -a "Marked 2.app" "$1"
+# open -a "Typora.app" "$1"
