@@ -17,10 +17,10 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rake'
 "
 " CoffeeScript support
- Bundle 'kchmck/vim-coffee-script'
-"
+Bundle 'kchmck/vim-coffee-script'
+
 " Fuzzy finder
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 
 " File tree
 Bundle 'scrooloose/nerdtree'
@@ -41,12 +41,9 @@ Bundle 'godlygeek/tabular'
 " HTML support
 Bundle 'tpope/vim-ragtag'
 
-" Emmet support
-Plugin 'mattn/emmet-vim'
-"
 " Markdown
 " Relies on tabular, which must be loaded first
-Bundle 'plasticboy/vim-markdown'
+Bundle 'preservim/vim-markdown'
 
 " Tmux related
 Bundle 'benmills/vimux'
@@ -64,7 +61,7 @@ Bundle 'mileszs/ack.vim'
 
 " My custom color scheme
 Bundle 'napcs/vim-mycontrast'
-"
+
 " Snippet support
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -85,11 +82,6 @@ Bundle "fatih/vim-go"
 " Support for Grunt
 Bundle 'mklabs/grunt.vim'
 
-" Syntax checking
-"Bundle 'scrooloose/syntastic'
-
-Plugin 'dense-analysis/ale'
-
 " Tab completion for variables and other things
 Bundle 'ervandew/supertab'
 
@@ -109,7 +101,8 @@ Bundle 'airblade/vim-gitgutter'
 
 " Shell support
 Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-shell'
+"Bundle 'xolox/vim-shell'
+Bundle 'napcs/vim-shell'
 
 " Handlebars support
 Bundle 'mustache/vim-mustache-handlebars'
@@ -122,9 +115,6 @@ Plugin 'jelera/vim-javascript-syntax'
 
 " Strip whitespace
 Bundle 'itspriddle/vim-stripper'
-
-" support for Dash on OSX
-Plugin 'rizzatti/dash.vim'
 
 " Elm
 Plugin 'elmcast/elm-vim'
@@ -145,26 +135,22 @@ Plugin 'posva/vim-vue'
 " crystal
 Plugin 'rhysd/vim-crystal'
 
-" tidal
-Plugin 'tidalcycles/vim-tidal'
-
 " Docker
 Plugin 'kevinhui/vim-docker-tools'
 
-" vimroom
-Plugin 'mikewest/vimroom'
-
+"writegood
 Plugin 'davidbeckingsale/writegood.vim'
 
 " coc
-Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
+"Plugin 'github/copilot.vim'
 
 try
   source $VIMHOME/vundle_private
 catch
   " no file.
 endtry
-
 
 " end
 call vundle#end()            " required

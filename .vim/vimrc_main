@@ -4,6 +4,7 @@
 " Main configuration
 " Visual Configuration
 " Shortcut Key Configuration
+" Fixes
 " Plugin Configuration
 " Private Configuration
 "
@@ -13,6 +14,7 @@
 set nocompatible                         "don't need to keep compatibility with Vi
 filetype plugin indent on                "enable detection, plugins and indenting in one step
 syntax on                                "Turn on syntax highlighting
+set omnifunc=syntaxcomplete#Complete     "Omnicomplete enable
 set encoding=utf-8                       "Force UTF-8 encoding for special characters
 set ruler                                "Turn on the ruler
 set number                               "Show line numbers
@@ -126,6 +128,9 @@ nmap <leader>l :set list!<CR>
 " Exit insert mode with jk
 imap jk <Esc>
 
+" Exit terminal mode with escape
+tnoremap <Leader><Esc> <C-w>N
+
 " reload configuration file
 map <Leader>r :so $MYVIMRC<CR>
 
@@ -175,9 +180,6 @@ endfunction
 " pastetoggle just in case
 set pastetoggle=<F2>
 
-" html
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
 
 " Navigate tabs
 map <leader>1 :tabp<CR>
@@ -239,9 +241,6 @@ endfunc
 
 " nmap <C-S-R> :call <SID>SynStack()<CR>
 
-" fix syntax highlighting in Ruby by using the older regex engine for Ruby
-" files
-autocmd FileType ruby setlocal re=1
 
 " ----------- Digraphs -------
 
@@ -254,6 +253,15 @@ silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
 nmap <silent> ,cq :cclose<CR>
 nmap <silent> ,co :copen<CR>
 
+" ----------- Fixes ----------------------------------
+"
+" html
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
+" fix syntax highlighting in Ruby by using the older regex engine for Ruby
+" files
+autocmd FileType ruby setlocal re=1
 
 " ----------- Plugin Configuration ----------------------------------
 
@@ -284,7 +292,7 @@ map <Leader>f :CtrlP<CR>
 map <Leader>b :CtrlPBuffer<CR>
 
 " Exclude files from ctrl-p finder
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|node_modules$'
 
 " ---- ack
 " Open ack and ackg
@@ -295,14 +303,34 @@ map <Leader>a :Ack
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
 
+" ---- CoC
+" always show in case things shift
+set signcolumn=yes
+
+" enter to do completion
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 " ---- wiki
+
+" only use wiki syntax under vimwiki folders
 let g:vimwiki_global_ext = 0
-let g:vimwiki_filetypes = ['markdown']
+
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " ---- markdown configs
+
 let g:vim_markdown_folding_disabled = 1
+" highlight YAML frontmatter
+let g:vim_markdown_frontmatter = 1
+
+" create links from clipboard
+
+" create link out of word using clipboard text as link destination
+autocmd FileType markdown nnoremap <Leader>4 "aciw[<C-r>"](<Esc>"*pli)<Esc>
+
+" create link out of selection using clipboard text as link destination
+autocmd FileType markdown vnoremap <Leader>4 "ac[<C-r>"](<Esc>"*pli)<Esc>
 
 " ---- vim-rooter configs
 let g:rooter_targets = '/,*'
@@ -326,25 +354,10 @@ nmap <Leader>vs vip<LocalLeader>vs<CR>
 " ----------- Mustache / Handlebars ---------------------------------
 let g:mustache_abbreviations = 1
 
-" ----------- ALE configs ---------------------------------------
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_list_vertical = 0
-let g:ale_lint_on_enter = 1
-" let g:ale_completion_enabled = 1
-" set omnifunc=ale#completion#OmniFunc
-
-" Map keys to navigate between lines with errors and warnings.
-nnoremap <leader>an :ALENextWrap<cr>
-nnoremap <leader>ap :ALEPreviousWrap<cr>
-
 " ----------- vue configs -------------------
 " limit preprocessors to speed up vim.
-let g:vue_pre_processors = ["scss"]
 
+let g:vue_pre_processors = ["scss"]
 
 " ----------- Dispatch configs ---------------------------------------
 
@@ -352,6 +365,11 @@ autocmd FileType coffee let b:dispatch = 'coffee -c %'
 autocmd BufEnter *_test.exs let b:dispatch = 'mix test %'
 
 nnoremap <Leader>e :Dispatch<CR>
+
+" ----------- Stripper configs ---------------------------------------
+" Markdown is ignored by default. Redefining the ignored types so it's not
+" ignored anymore.
+let g:StripperIgnoreFileTypes = [ 'liquid', 'txt', 'my_ft' ]
 
 " ----------- quoting -----------
 augroup textobj_quote
@@ -365,6 +383,7 @@ autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
 
 " ---------- EEX Elixir templates -------
 autocmd BufRead,BufNewFile *.eex set ft=eex.html
+
 
 " ----------- Launch configs ---------------------------------------
 if has('win32') || has ('win64')
@@ -384,7 +403,8 @@ endif
 
 autocmd FileType javascript  nmap <Leader>g :!"$CLEAR_COMMAND"; node "%"<cr>
 autocmd FileType coffee  nmap <Leader>g :!"$CLEAR_COMMAND"; coffee "%"<cr>
-autocmd FileType markdown  nmap <Leader>g :!mark "%"<cr><cr>
+autocmd FileType markdown  nmap <Leader>h :!mark "%"<cr><cr>
+autocmd FileType markdown  nmap <Leader>g :!typora "%"<cr><cr>
 autocmd FileType groovy  nmap <Leader>g :!"$CLEAR_COMMAND"; groovy "%"<cr>
 autocmd FileType sh  nmap <Leader>g :!"$CLEAR_COMMAND"; sh "%"<cr>
 autocmd FileType python  nmap <Leader>g :!"$CLEAR_COMMAND"; python3 "%"<cr>
