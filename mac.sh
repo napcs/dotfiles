@@ -25,9 +25,8 @@ defaults write com.apple.universalaccess closeViewZoomMode -int 0
 # zoom follow the pointer
 defaults write com.apple.universalaccess closeViewPanningMode -int 0
 
-
 echo "Installing software"
-brew install vim git subversion ack ctags ranger unzip direnv starship tree fzf pandoc wget
+brew install vim git vale subversion ack ctags ranger unzip direnv starship tree fzf pandoc wget
 
 /opt/homebrew/opt/fzf/install
 
@@ -42,34 +41,35 @@ brew install gnupg
 curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 \curl -sSL https://get.rvm.io | bash -s stable
-rvm install ruby-3.0.1
-
+rvm install ruby-3.1.2
+rvm use ruby-3.1.2 --default
+gem install solargraph
+gem install tmuxinator
 
 echo "installing window manager"
 brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
 
-
 echo "Setting up bashrc"
-ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
-ln -nfs ~/Dropbox/dotfiles/.bash_osx ~/.bash_osx
-ln -nfs ~/Dropbox/dotfiles/.vimrc ~/.vimrc
-ln -nfs ~/Dropbox/dotfiles/.vim ~/.vim
-ln -nfs ~/Dropbox/dotfiles/.gemrc ~/.gemrc
-ln -nfs ~/Dropbox/dotfiles/.irbrc ~/.irbrc
-ln -nfs ~/Dropbox/dotfiles/.gitconfig ~/.gitconfig
-ln -nfs ~/Dropbox/dotfiles/.git_completion.bash ~/.git_completion.bash
-ln -nfs ~/Dropbox/dotfiles/.tmux.conf ~/.tmux.conf
-ln -nfs ~/Dropbox/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
-ln -nfs ~/Dropbox/dotfiles/.ackrc ~/.ackrc
-ln -nfs ~/Dropbox/dotfiles/.inputrc ~/.inputrc
-ln -nfs ~/Dropbox/dotfiles/.config/jrnl ~/.config/jrnl
-ln -nfs ~/Dropbox/dotfiles/.config/direnv/ ~/.config/direnv
-ln -nfs ~/Dropbox/dotfiles/.config/coc ~/.config/coc
-ln -nfs ~/Dropbox/dotfiles/bin/battery ~/bin/battery
-ln -nfs ~/Dropbox/dotfiles/starship.toml ~/.config/starship.toml
-ln -nfs ~/Dropbox/dotfiles/.skhdrc ~/.skhdrc
-ln -nfs ~/Dropbox/dotfiles/.yabairc ~/.yabairc
+ln -nfs ~/dotfiles/.bash_profile ~/.bash_profile
+ln -nfs ~/dotfiles/.bash_osx ~/.bash_osx
+ln -nfs ~/dotfiles/.vimrc ~/.vimrc
+ln -nfs ~/dotfiles/.vim ~/.vim
+ln -nfs ~/dotfiles/.gemrc ~/.gemrc
+ln -nfs ~/dotfiles/.irbrc ~/.irbrc
+ln -nfs ~/dotfiles/.gitconfig ~/.gitconfig
+ln -nfs ~/dotfiles/.git_completion.bash ~/.git_completion.bash
+ln -nfs ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -nfs ~/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
+ln -nfs ~/dotfiles/.ackrc ~/.ackrc
+ln -nfs ~/dotfiles/.inputrc ~/.inputrc
+ln -nfs ~/dotfiles/.config/jrnl ~/.config/jrnl
+ln -nfs ~/dotfiles/.config/direnv/ ~/.config/direnv
+ln -nfs ~/dotfiles/.config/coc ~/.config/coc
+ln -nfs ~/dotfiles/bin/battery ~/bin/battery
+ln -nfs ~/dotfiles/starship.toml ~/.config/starship.toml
+ln -nfs ~/dotfiles/.skhdrc ~/.skhdrc
+ln -nfs ~/dotfiles/.yabairc ~/.yabairc
 
 echo "create dirs"
 mkdir -p .vim/autoload
@@ -79,16 +79,15 @@ echo "set up Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
 vim +PluginInstall +qall
 
-
 echo "install coc"
 
 echo "Compiling"
-pushd Dropbox/dotfiles/.vim/bundle/coc.nvim
+pushd ~/dotfiles/.vim/bundle/coc.nvim
 yarn install
 popd
 
 echo "installing plugins"
-vim +'CocInstall -sync coc-html coc-css coc-tsserver coc-go' +qall
+vim +'CocInstall -sync coc-html coc-css coc-vale coc-tsserver coc-go' +qall
 
 echo "Returning to original destination"
 popd
