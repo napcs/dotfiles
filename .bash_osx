@@ -62,15 +62,15 @@ else
 fi
 
 # make sure Java8 is the defailt or some command line tools run slow.
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+if [ -x /usr/libexec/java_home ]; then
+  if JAVA_PATH=$(/usr/libexec/java_home -v 1.8 2>/dev/null); then
+    export JAVA_HOME="$JAVA_PATH"
+  fi
+fi
 
 # PG aliases
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-
-# gtimeout is from coreutils - but they're all prefixed with g.
-# I want the one that works like ubuntu :)
-alias timeout='gtimeout'
 
 # open simulator
 alias iphonesim="open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app/"
@@ -84,9 +84,6 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 # homedir/bin in path first
 export PATH="$HOME/bin:$PATH"
 
-#heroku
-export PATH="$PATH:/usr/local/heroku/bin"
-
 #go
 export PATH="$PATH:$HOME/go/bin"
 export GOPATH=$HOME/go
@@ -94,38 +91,37 @@ export GOPATH=$HOME/go
 # Firefox profile
 alias ffclean="/Applications/Firefox.app/Contents/MacOS/firefox-bin -P"
 
-
 #   cdf:  'Cd's to frontmost window of MacOS Finder
 #   ------------------------------------------------------
-    cdf () {
-        currFolderPath=$( /usr/bin/osascript <<EOT
-            tell application "Finder"
-                try
-            set currFolder to (folder of the front window as alias)
-                on error
-            set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
+cdf () {
+    currFolderPath=$( /usr/bin/osascript <<EOT
+        tell application "Finder"
+            try
+        set currFolder to (folder of the front window as alias)
+            on error
+        set currFolder to (path to desktop folder as alias)
+            end try
+            POSIX path of currFolder
+        end tell
 EOT
-        )
-        echo "cd to \"$currFolderPath\""
-        cd "$currFolderPath"
-    }
+    )
+    echo "cd to \"$currFolderPath\""
+    cd "$currFolderPath"
+}
 
 #   ii:  display useful host related informaton
 #   -------------------------------------------------------------------
-    ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
-        echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
-        echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
-        echo
-    }
+ii() {
+    echo -e "\nYou are logged on ${RED}$HOST"
+    echo -e "\nAdditionnal information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}Current network location :$NC " ; scselect
+    echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+    echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
+    echo
+}
 
 term_720p() {
   osascript -e 'tell application "iTerm2" to set the bounds of the front window to {24, 24, 1280, 720}'
@@ -147,19 +143,20 @@ notifyMe() {
   fi
 }
 
-
 # aliases for starting/stopping yabai
 alias yabaioff='yabai --stop-service'
 alias yabaion='yabai --start-service'
 alias yabairestart='yabai --restart-service'
 
 # load gnu versions of utilities
+# mac silocon
 if [[ $(uname -p) == 'arm' ]]; then
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 else
+  # mac intel
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
   export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
   export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"

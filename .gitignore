@@ -10,6 +10,7 @@
 .config/ranger/bookmarks
 .config/ranger/tagged
 .config/doctl
-
 .config/configstore/
 .config/htop
+.config/coc/extensions/*-data/
+.config/coc/extensions/node_modules/
