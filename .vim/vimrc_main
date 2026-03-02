@@ -40,7 +40,7 @@ set softtabstop=2                        "number of spaces to skip or insert whe
 set expandtab                            "spaces instead of tabs for better cross-editor compatibility
 set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
 set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
-set nowrap                               "no wrapping
+set wrap                               "no wrapping
 
 set backspace=indent,eol,start           "allow backspacing over everything in insert mode
 "set cindent                              "recommended seting for automatic C-style indentation
@@ -97,14 +97,29 @@ set statusline=%f%m%r%h%w[%l][%{&ff}]%y[%p%%][%04l,%04v][%n]
 "              +-- full path to file in the buffer
 
 " Use a bar-shaped cursor for insert mode, even through tmux.
-if has("gui_running")
-  if exists('$TMUX')
-      let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-      let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  else
-      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  endif
+if !has('gui_running')
+  " DECSCUSR cursor styles (widely supported):
+  " 2 = steady block, 4 = steady underline, 6 = steady bar
+  let &t_EI = "\<Esc>[2 q"   " normal mode: block
+  let &t_SI = "\<Esc>[6 q"   " insert mode: bar
+  let &t_SR = "\<Esc>[4 q"   " replace mode: underline (optional)
+endif
+
+" Mouse support within tmux
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  " Better mouse support, see  :help 'ttymouse'
+  set ttymouse=sgr
+
+  " Enable true colors, see  :help xterm-true-color
+  let &termguicolors = v:true
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  " Enable focus event tracking, see  :help xterm-focus-event
+  let &t_fe = "\<Esc>[?1004h"
+  let &t_fd = "\<Esc>[?1004l"
+  execute "set <FocusGained>=\<Esc>[I"
+  execute "set <FocusLost>=\<Esc>[O"
 endif
 
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -140,7 +155,6 @@ map <Leader>ct :!ctags -R --exclude=.git --exclude=db/dumps --exclude=tmp --excl
 " Exit insert mode and save with jj
 imap jj <Esc>:w<CR>
 
-
 " visual indent with reselct
 vnoremap <Right> >gv
 vnoremap <Left> <gv
@@ -164,22 +178,16 @@ nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
 nnoremap <silent> <expr> $ ScreenMovement("$")
 
-" Supports pasting in from the clipboard in the terminal
-" https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
+" Bracketed paste in terminal Vim (tmux/screen)
+if !has('gui_running') && &term =~# '^\%(screen\|tmux\)'
+  let &t_BE = "\<Esc>[?2004h"
+  let &t_BD = "\<Esc>[?2004l"
+  let &t_PS = "\<Esc>[200~"
+  let &t_PE = "\<Esc>[201~"
+endif
 
 " pastetoggle just in case
 set pastetoggle=<F2>
-
 
 " Navigate tabs
 map <leader>1 :tabp<CR>
@@ -240,11 +248,6 @@ function! <SID>SynStack()
 endfunc
 
 " nmap <C-S-R> :call <SID>SynStack()<CR>
-
-
-" ----------- Digraphs -------
-
-silent! dig -. 8230 "U+2026=… HORIZONTAL ELLIPSIS
 
 " ----------- quickfix -------
 
@@ -374,7 +377,7 @@ let g:StripperIgnoreFileTypes = [ 'liquid', 'txt', 'my_ft' ]
 " ----------- quoting -----------
 augroup textobj_quote
   autocmd!
-  autocmd FileType markdown call textobj#quote#init()
+  " autocmd FileType markdown call textobj#quote#init()
   autocmd FileType textile call textobj#quote#init()
 augroup END
 
