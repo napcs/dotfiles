@@ -38,9 +38,8 @@ brew install node yarn
 
 echo "installing Ruby"
 brew install gnupg
-curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-\curl -sSL https://get.rvm.io | bash -s stable
+gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash
 rvm install ruby-3.1.2
 rvm use ruby-3.1.2 --default
 gem install solargraph
