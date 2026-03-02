@@ -74,6 +74,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 source ~/.git_completion.bash
 
 
+alias cdr='cd $(git rev-parse --show-toplevel)'
 
 # Linux configuration
 if [ -f ~/.bash_linux ]; then
