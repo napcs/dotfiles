@@ -19,6 +19,7 @@
 [core]
 	autocrlf = input
 	excludesfile = /Users/brianhogan/.gitignore
+  pager = delta
 [push]
 	default = current
 
@@ -30,5 +31,25 @@
         ;fsckObjects = true
 [credential]
 	helper = osxkeychain
+
 [pull]
 	ff = only
+
+[init]
+	defaultBranch = main
+
+[core]
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

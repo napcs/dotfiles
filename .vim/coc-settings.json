@@ -1,5 +1,6 @@
 {
   "diagnostic.enable": true,
   "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "vale.valeCLI.minAlertLevel": "suggestion"
 }

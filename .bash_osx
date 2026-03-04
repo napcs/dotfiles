@@ -172,3 +172,4 @@ blocking() {
 }
 
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias bup="java --add-exports java.desktop/com.apple.eawt=ALL-UNNAMED -jar buu.jar"

@@ -1,2 +1,5 @@
 #!/bin/sh
-lame "$1.wav" "$1.mp3" -V2 --vbr-new -q0 --lowpass 19.7
+input="$1"
+output="${input%.wav}.mp3"
+
+lame "$input" "$output" --preset insane

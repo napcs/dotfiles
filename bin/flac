@@ -1,2 +1,0 @@
-#!/bin/sh
-ffmpeg -i $1.wav -c:a flac $1.flac

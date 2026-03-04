@@ -171,3 +171,10 @@ _tmux_attach() {
 # if [[ -z "$TMUX_PANE" ]]; then
   # tmux new-session -A -s "${USER}" && exit 0
 # fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/brianhogan/.lmstudio/bin"
+
+if [[ -s $HOME/.local/bin/env ]] ; then
+ . "$HOME/.local/bin/env"
+fi

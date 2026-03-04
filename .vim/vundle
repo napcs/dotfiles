@@ -141,6 +141,9 @@ Plugin 'kevinhui/vim-docker-tools'
 "writegood
 Plugin 'davidbeckingsale/writegood.vim'
 
+" ALE - for when no js is available
+" Plugin 'dense-analysis/ale'
+
 " coc
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 

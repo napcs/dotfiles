@@ -9,8 +9,13 @@
 .config/ranger/history
 .config/ranger/bookmarks
 .config/ranger/tagged
+.config/yarn
+.config/direnv
 .config/doctl
 .config/configstore/
 .config/htop
+.config/tmuxinator
+.config/iterm2
+.config/jrnl
 .config/coc/extensions/*-data/
 .config/coc/extensions/node_modules/
