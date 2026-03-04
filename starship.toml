@@ -1,7 +1,7 @@
 # Use custom format
 
 format = """
-$username$hostname$directory$vagrant$terraform$elixir$ruby$go$nodejs$docker_context$git_branch$character
+$username$hostname$vagrant$terraform$elixir$ruby$go$nodejs$git_branch${custom.tailscale}$directory$character
 """
 
 # Wait 10 milliseconds for starship to check files under the current directory.
@@ -42,3 +42,14 @@ format = "[$user](yellow bold)"
 format = "[$path](cyan bold) "
 truncate_to_repo = true
 truncation_length=1
+
+[localip]
+disabled=false
+ssh_only=false
+
+[custom.tailscale]
+format = "TS: [$output](yellow bold) "
+description = "Tailscale 1P"
+when = true
+command = "tailscale ip --4"
+# command = "ifconfig | grep inet | grep '100\\.' | awk '{print $2}'"

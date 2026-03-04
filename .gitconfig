@@ -9,15 +9,18 @@
 [alias]
   fit = !git reset --hard HEAD && git clean -f -d
   cb = !git checkout -b
+  pb = !git push origin $(git branch --show-current)
   topcommits = !git shortlog -sne
   statsby = "!f() { git log --pretty=tformat: --numstat --author=$1; }; f"
   commitsby = "!f() { git log -p --author=$1; }; f"
+  co = "!f() { git checkout $(git branch --all | fzf); }; f"
+	diffmain = diff origin/main...HEAD
 
 [core]
 	autocrlf = input
 	excludesfile = /Users/brianhogan/.gitignore
 [push]
-	default = simple
+	default = current
 
 ;[transfer]
         ;fsckobjects = true
@@ -27,3 +30,5 @@
         ;fsckObjects = true
 [credential]
 	helper = osxkeychain
+[pull]
+	ff = only

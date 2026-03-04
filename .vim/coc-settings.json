@@ -1,5 +1,5 @@
 {
-  "diagnostic.virtualText": true,
   "diagnostic.enable": true,
+  "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false
 }
