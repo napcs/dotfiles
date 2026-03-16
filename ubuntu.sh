@@ -5,15 +5,23 @@ echo "Installing prereqs"
 sudo apt-get install -y direnv build-essential libevent-dev libncurses-dev wget vim git  ack-grep exuberant-ctags ranger unzip
 
 echo "Installing tmux"
-wget https://github.com/tmux/tmux/releases/download/2.6/tmux-2.6.tar.gz
-tar -zxvf tmux-2.6.tar.gz
-pushd tmux-2.6
-./configure
-make
-make install
+mkdir tmp_tmux
+pushd tmp_tmux
+wget https://github.com/tmux/tmux-builds/releases/download/v3.6a/tmux-3.6a-linux-x86_64.tar.gz
+tar -zxvf tmux-*.tar.gz
+sudo mv tmux /usr/local/bin
 popd
-rm tmux-2.6.tar.gz
-rm -rf tmux-2.6
+rm -rf tmp_tmux
+
+echo "installing vale"
+mkdir tmp_vale
+pushd tmp_vale
+wget https://github.com/errata-ai/vale/releases/download/v3.14.0/vale_3.14.0_Linux_64-bit.tar.gz
+tar -zxvf vale_*.tar.gz
+sudo mv ./vale /usr/local/bin/vale
+popd
+rm -rf tmp_vale
+
 
 echo "installing Node.js"
 curl -sL https://deb.nodesource.com/setup_25.x -o /tmp/nodesource_setup.sh
