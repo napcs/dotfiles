@@ -178,3 +178,5 @@ export PATH="$PATH:/Users/brianhogan/.lmstudio/bin"
 if [[ -s $HOME/.local/bin/env ]] ; then
  . "$HOME/.local/bin/env"
 fi
+
+export PATH="$PATH:$HOME/.local/bin"
