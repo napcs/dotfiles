@@ -15,6 +15,7 @@
   commitsby = "!f() { git log -p --author=$1; }; f"
   co = "!f() { git checkout $(git branch --all | fzf); }; f"
 	diffmain = diff origin/main...HEAD
+  diffmainfiles = diff --name-only origin/main...HEAD
 
 [core]
 	autocrlf = input

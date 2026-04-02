@@ -1,7 +1,7 @@
 # Use custom format
 
 format = """
-$username$hostname$vagrant$terraform$elixir$ruby$go$nodejs$git_branch${custom.tailscale}$directory$character
+$username$hostname$vagrant$terraform$elixir$ruby$go$nodejs$git_branch${custom.tailscale}$directory${custom.remote}$character
 """
 
 # Wait 10 milliseconds for starship to check files under the current directory.
@@ -52,4 +52,8 @@ format = "TS: [$output](yellow bold) "
 description = "Tailscale 1P"
 when = true
 command = "tailscale ip --4"
-# command = "ifconfig | grep inet | grep '100\\.' | awk '{print $2}'"
+
+[custom.remote]
+command = "echo REMOTE"
+when = "test -n \"$SSH_CONNECTION\""
+format = "[🚨 $output 🚨](bold red) "
