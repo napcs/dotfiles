@@ -16,6 +16,7 @@
   co = "!f() { git checkout $(git branch --all | fzf); }; f"
 	diffmain = diff origin/main...HEAD
   diffmainfiles = diff --name-only origin/main...HEAD
+  sync-main = "!git fetch origin && git merge origin/main"
 
 [core]
 	autocrlf = input
