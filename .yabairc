@@ -37,4 +37,9 @@ yabai -m config window_gap                   5
 yabai -m rule --add app="^BusyBox$" manage=off
 yabai -m rule --add app="^Monosnap$" manage=off
 
+# Ghostty is apparently using macOS windows for its tabs so... watch for window create and destroy and force
+# a layout switch
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+
 echo "yabai configuration loaded.."
